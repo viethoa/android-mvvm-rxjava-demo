@@ -1,0 +1,161 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="BaseAppTheme" />
+
+    <style name="Application_Theme" parent="BaseAppTheme">
+        <item name="android:windowBackground">@color/bright_color</item>
+    </style>
+
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryDark">@color/primary_color_dark</item>
+        <item name="colorAccent">@color/accent_color</item>
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:actionBarStyle">@style/ToolbarStyle</item>
+        <!-- Menu drawer arrow style  -->
+        <!--<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
+        <item name="textAllCaps">false</item>
+
+        <!-- Popup size style -->
+        <item name="android:windowMinWidthMinor">80%</item>
+        <item name="android:windowMinWidthMajor">80%</item>
+    </style>
+
+
+    <!--######################## Dialog style ########################-->
+    <style name="CustomDialogLoading" parent="android:Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+
+    <!--######################## Menu drawer style ########################-->
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@color/bright_color</item>
+    </style>
+
+
+    <!--######################## Toolbar style ########################-->
+    <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:textColorPrimary">@color/bright_color</item>
+        <item name="android:textColorSecondary">@color/bright_color</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:popupMenuStyle">@style/ToolbarPopup</item>
+        <item name="android:textSize">@dimen/font_medium</item>
+        <item name="actionMenuTextColor">@color/bright_color</item>
+        <item name="android:actionMenuTextColor">@color/bright_color</item>
+    </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">@dimen/font_medium</item>
+        <item name="android:textColor">@color/bright_color</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="ToolbarPopup" parent="Widget.AppCompat.Light.PopupMenu">
+        <item name="android:background">@color/bright_color</item>
+        <item name="android:textColor">@color/bright_color</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+
+    <!--######################## TextView style ########################-->
+    <style name="text_primary_large">
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textSize">@dimen/font_large</item>
+    </style>
+
+    <style name="text_primary_medium">
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textSize">@dimen/font_medium</item>
+    </style>
+
+    <style name="text_primary_small">
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textSize">@dimen/font_small</item>
+    </style>
+
+    <style name="text_accent_large">
+        <item name="android:textColor">@color/accent_color</item>
+        <item name="android:textSize">@dimen/font_large</item>
+    </style>
+
+    <style name="text_accent_medium">
+        <item name="android:textColor">@color/accent_color</item>
+        <item name="android:textSize">@dimen/font_medium</item>
+    </style>
+
+    <style name="text_accent_small">
+        <item name="android:textColor">@color/accent_color</item>
+        <item name="android:textSize">@dimen/font_small</item>
+    </style>
+
+    <style name="text_black_medium">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">@dimen/font_medium</item>
+    </style>
+
+    <style name="text_black_small">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">@dimen/font_small</item>
+    </style>
+
+    <style name="text_black_large">
+        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textSize">@dimen/font_large</item>
+    </style>
+
+    <style name="text_dark_medium">
+        <item name="android:textColor">@color/dark_color</item>
+        <item name="android:textSize">@dimen/font_medium</item>
+    </style>
+
+    <style name="text_dark_small">
+        <item name="android:textColor">@color/dark_color</item>
+        <item name="android:textSize">@dimen/font_small</item>
+    </style>
+
+    <style name="text_dark_large">
+        <item name="android:textColor">@color/dark_color</item>
+        <item name="android:textSize">@dimen/font_large</item>
+    </style>
+
+    <style name="text_light_medium">
+        <item name="android:textColor">@color/light_color</item>
+        <item name="android:textSize">@dimen/font_medium</item>
+    </style>
+
+    <style name="text_light_small">
+        <item name="android:textColor">@color/light_color</item>
+        <item name="android:textSize">@dimen/font_small</item>
+    </style>
+
+    <style name="text_light_large">
+        <item name="android:textColor">@color/light_color</item>
+        <item name="android:textSize">@dimen/font_large</item>
+    </style>
+
+    <style name="text_bright_large">
+        <item name="android:textColor">@color/bright_color</item>
+        <item name="android:textSize">@dimen/font_large</item>
+    </style>
+
+    <style name="text_bright_medium">
+        <item name="android:textColor">@color/bright_color</item>
+        <item name="android:textSize">@dimen/font_medium</item>
+    </style>
+
+    <style name="text_bright_small">
+        <item name="android:textColor">@color/bright_color</item>
+        <item name="android:textSize">@dimen/font_small</item>
+    </style>
+
+</resources>
