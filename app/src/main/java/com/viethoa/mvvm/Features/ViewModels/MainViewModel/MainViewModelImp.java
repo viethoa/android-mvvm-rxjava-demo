@@ -1,7 +1,7 @@
 package com.viethoa.mvvm.Features.ViewModels.MainViewModel;
 
 import com.jakewharton.rxrelay.PublishRelay;
-import com.viethoa.mvvm.Components.networks.FakeDataAPI;
+import com.viethoa.mvvm.Features.Interactor.VocabularyInteractor;
 import com.viethoa.mvvm.Features.Models.Vocabulary;
 
 import java.util.List;
@@ -44,19 +44,14 @@ public class MainViewModelImp implements MainViewModel {
     //----------------------------------------------------------------------------------------------
 
     @Inject
+    VocabularyInteractor vocabularyInteractor;
+
+    @Inject
     public MainViewModelImp() {
 
         getVocabulariesCommand
                 .debounce(500, TimeUnit.MILLISECONDS)
-                .map(_void -> this.getVocabularies())
+                .map(_void -> vocabularyInteractor.getVocabularies())
                 .subscribe(vocabulariesSubject::onNext);
-    }
-
-    //----------------------------------------------------------------------------------------------
-    // API Helper
-    //----------------------------------------------------------------------------------------------
-
-    private List<Vocabulary> getVocabularies() {
-        return FakeDataAPI.getVocabularies();
     }
 }

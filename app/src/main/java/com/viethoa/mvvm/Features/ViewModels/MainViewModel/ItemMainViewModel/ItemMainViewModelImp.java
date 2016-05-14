@@ -1,4 +1,4 @@
-package com.viethoa.mvvm.Features.ViewModels.MainViewModel;
+package com.viethoa.mvvm.Features.ViewModels.MainViewModel.ItemMainViewModel;
 
 import android.content.Context;
 import android.content.Intent;

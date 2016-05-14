@@ -15,5 +15,5 @@
     <color name="bright_color">#FFFFFF</color>
     <color name="gray_color">#CBD0D9</color>
 
-    <color name="toolbar_transparent">#40ffffff</color>
+    <color name="toolbar_transparent">#333F51B5</color>
 </resources>

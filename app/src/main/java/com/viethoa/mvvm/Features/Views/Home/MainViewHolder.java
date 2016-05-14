@@ -15,7 +15,7 @@ import com.viethoa.mvvm.BaseApplications.picasso.CircleTransform;
 import com.viethoa.mvvm.Components.modules.ApplicationComponent;
 import com.viethoa.mvvm.Components.modules.ApplicationGraph;
 import com.viethoa.mvvm.Features.Models.Vocabulary;
-import com.viethoa.mvvm.Features.ViewModels.MainViewModel.ItemMainViewModel;
+import com.viethoa.mvvm.Features.ViewModels.MainViewModel.ItemMainViewModel.ItemMainViewModel;
 import com.viethoa.mvvm.Features.Views.Detail.DetailActivity;
 import com.viethoa.mvvm.R;
 

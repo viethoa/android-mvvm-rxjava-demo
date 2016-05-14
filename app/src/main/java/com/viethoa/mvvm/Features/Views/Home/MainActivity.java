@@ -42,4 +42,6 @@ public class MainActivity extends RxBaseActivity {
 
         mainViewModel.getGetVocabulariesCommand().call(null);
     }
+
+
 }

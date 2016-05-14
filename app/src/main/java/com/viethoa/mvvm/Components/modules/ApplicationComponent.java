@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.viethoa.mvvm.Components.modules.DetailModule.DetailModule;
 import com.viethoa.mvvm.Components.modules.HomeModule.HomeModule;
+import com.viethoa.mvvm.Components.modules.InteractorModule.VocabularyInteractorModule;
 import com.viethoa.mvvm.Components.modules.ItemMainModule.ItemMainModule;
 
 import javax.inject.Singleton;
@@ -18,7 +19,8 @@ import dagger.Component;
         modules = {
                 HomeModule.class,
                 DetailModule.class,
-                ItemMainModule.class
+                ItemMainModule.class,
+                VocabularyInteractorModule.class
         }
 )
 public interface ApplicationComponent extends ApplicationGraph {
@@ -31,6 +33,7 @@ public interface ApplicationComponent extends ApplicationGraph {
                     .homeModule(new HomeModule())
                     .detailModule(new DetailModule())
                     .itemMainModule(new ItemMainModule(context))
+                    .vocabularyInteractorModule(new VocabularyInteractorModule())
                     .build();
         }
     }
