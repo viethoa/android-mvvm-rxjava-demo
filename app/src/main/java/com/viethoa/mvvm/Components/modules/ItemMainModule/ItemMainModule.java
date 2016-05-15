@@ -5,8 +5,6 @@ import android.content.Context;
 import com.viethoa.mvvm.Features.ViewModels.MainViewModel.ItemMainViewModel.ItemMainViewModel;
 import com.viethoa.mvvm.Features.ViewModels.MainViewModel.ItemMainViewModel.ItemMainViewModelImp;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -23,13 +21,11 @@ public class ItemMainModule {
     }
 
     @Provides
-    @Singleton
     Context provideParentContext() {
         return context;
     }
 
     @Provides
-    @Singleton
     ItemMainViewModel provideItemMainViewModel(ItemMainViewModelImp viewModel) {
         return viewModel;
     }

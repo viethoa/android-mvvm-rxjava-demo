@@ -5,7 +5,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.viethoa.mvvm.BaseApplications.views.RxBaseActivity;
-import com.viethoa.mvvm.Components.modules.ApplicationGraph;
+import com.viethoa.mvvm.Components.modules.AppComponent;
+import com.viethoa.mvvm.Components.modules.HomeModule.DaggerHomeComponent;
+import com.viethoa.mvvm.Components.modules.HomeModule.HomeComponent;
+import com.viethoa.mvvm.Components.modules.HomeModule.HomeModule;
+import com.viethoa.mvvm.Features.MVVMApplication;
 import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainViewModel;
 import com.viethoa.mvvm.R;
 
@@ -23,8 +27,12 @@ public class MainActivity extends RxBaseActivity {
     RecyclerView recyclerView;
 
     @Override
-    protected void injectModule(ApplicationGraph objectGraph) {
-        objectGraph.inject(this);
+    protected void injectModule(AppComponent appComponent) {
+        HomeComponent homeComponent = DaggerHomeComponent.builder()
+                .appComponent(MVVMApplication.newInstance().getComponent())
+                .homeModule(new HomeModule())
+                .build();
+        homeComponent.inject(this);
     }
 
     @Override

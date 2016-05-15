@@ -8,7 +8,7 @@ import com.viethoa.mvvm.Features.Views.Home.MainViewHolder;
 /**
  * Created by VietHoa on 19/04/16.
  */
-public interface ApplicationGraph {
+public interface ApplicationGraphTest {
 
     void inject(MainActivity mainActivity);
 

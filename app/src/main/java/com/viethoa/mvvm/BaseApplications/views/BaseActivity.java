@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
-import com.viethoa.mvvm.Components.modules.ApplicationGraph;
+import com.viethoa.mvvm.Components.modules.AppComponent;
 import com.viethoa.mvvm.Features.MVVMApplication;
 
 import butterknife.ButterKnife;
@@ -46,11 +46,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     // Setup dagger
     //----------------------------------------------------------------------------------------------
 
-    protected abstract void injectModule(ApplicationGraph objectGraph);
+    protected abstract void injectModule(AppComponent appComponent);
 
     private void initializeDagger() {
         MVVMApplication application = MVVMApplication.newInstance();
-        injectModule(application.getApplicationGraph());
+        injectModule(application.getComponent());
     }
 
 

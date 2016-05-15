@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.View;
@@ -12,8 +13,10 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.viethoa.mvvm.BaseApplications.picasso.CircleTransform;
-import com.viethoa.mvvm.Components.modules.ApplicationComponent;
-import com.viethoa.mvvm.Components.modules.ApplicationGraph;
+import com.viethoa.mvvm.Components.modules.ItemMainModule.DaggerItemMainComponent;
+import com.viethoa.mvvm.Components.modules.ItemMainModule.ItemMainComponent;
+import com.viethoa.mvvm.Components.modules.ItemMainModule.ItemMainModule;
+import com.viethoa.mvvm.Features.MVVMApplication;
 import com.viethoa.mvvm.Features.Models.Vocabulary;
 import com.viethoa.mvvm.Features.ViewModels.MainViewModel.ItemMainViewModel.ItemMainViewModel;
 import com.viethoa.mvvm.Features.Views.Detail.DetailActivity;
@@ -56,8 +59,12 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
         this.mContext = context;
         ButterKnife.bind(this, itemView);
 
-        ApplicationGraph objectGraph = ApplicationComponent.Initializer.init(mContext);
-        objectGraph.inject(this);
+        // Injector
+        ItemMainComponent component = DaggerItemMainComponent.builder()
+                .appComponent(MVVMApplication.newInstance().getComponent())
+                .itemMainModule(new ItemMainModule(mContext))
+                .build();
+        component.inject(this);
 
         // Word
         itemMainViewModel.word()
@@ -75,7 +82,7 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
         itemMainViewModel.wordImageMeaning()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(url -> {
-                    Picasso.with(mContext).load(url)
+                    Picasso.with(mContext).load(Uri.parse(url))
                             .placeholder(R.drawable.placeholder_user)
                             .transform(new CircleTransform())
                             .into(ivWordImageMeaning);

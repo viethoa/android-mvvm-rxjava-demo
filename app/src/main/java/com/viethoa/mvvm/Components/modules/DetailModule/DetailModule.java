@@ -3,8 +3,6 @@ package com.viethoa.mvvm.Components.modules.DetailModule;
 import com.viethoa.mvvm.Features.ViewModels.DetailViewModel.DetailViewModel;
 import com.viethoa.mvvm.Features.ViewModels.DetailViewModel.DetailViewModelImp;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -15,7 +13,6 @@ import dagger.Provides;
 public class DetailModule {
 
     @Provides
-    @Singleton
     DetailViewModel provideDetailViewModel(DetailViewModelImp viewModel) {
         return viewModel;
     }

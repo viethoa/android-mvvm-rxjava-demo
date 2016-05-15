@@ -2,15 +2,16 @@ package com.viethoa.mvvm.Features;
 
 import android.app.Application;
 
-import com.viethoa.mvvm.Components.modules.ApplicationComponent;
-import com.viethoa.mvvm.Components.modules.ApplicationGraph;
+import com.viethoa.mvvm.Components.modules.AppComponent;
+import com.viethoa.mvvm.Components.modules.DaggerAppComponent;
+import com.viethoa.mvvm.Components.modules.InteractorModule.VocabularyInteractorModule;
 
 /**
  * Created by VietHoa on 27/04/16.
  */
 public class MVVMApplication extends Application {
     private static Application application;
-    private ApplicationGraph mObjectGraph;
+    private AppComponent appComponent;
 
     public static MVVMApplication newInstance() {
         return (MVVMApplication) application;
@@ -29,10 +30,12 @@ public class MVVMApplication extends Application {
     //----------------------------------------------------------------------------------------------
 
     private void initializeDagger() {
-        mObjectGraph = ApplicationComponent.Initializer.init(this);
+        appComponent = DaggerAppComponent.builder()
+                .vocabularyInteractorModule(new VocabularyInteractorModule())
+                .build();
     }
 
-    public ApplicationGraph getApplicationGraph() {
-        return mObjectGraph;
+    public AppComponent getComponent() {
+        return appComponent;
     }
 }

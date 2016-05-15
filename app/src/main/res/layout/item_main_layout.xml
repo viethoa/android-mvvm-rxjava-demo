@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:orientation="vertical"
     card_view:cardCornerRadius="@dimen/small_radius"

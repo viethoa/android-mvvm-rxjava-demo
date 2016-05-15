@@ -10,7 +10,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.viethoa.mvvm.BaseApplications.views.RxBaseActivity;
-import com.viethoa.mvvm.Components.modules.ApplicationGraph;
+import com.viethoa.mvvm.Components.modules.AppComponent;
+import com.viethoa.mvvm.Components.modules.DetailModule.DaggerDetailComponent;
+import com.viethoa.mvvm.Components.modules.DetailModule.DetailComponent;
+import com.viethoa.mvvm.Components.modules.DetailModule.DetailModule;
+import com.viethoa.mvvm.Features.MVVMApplication;
 import com.viethoa.mvvm.Features.Models.Vocabulary;
 import com.viethoa.mvvm.Features.ViewModels.DetailViewModel.DetailViewModel;
 import com.viethoa.mvvm.R;
@@ -44,8 +48,12 @@ public class DetailActivity extends RxBaseActivity {
     }
 
     @Override
-    protected void injectModule(ApplicationGraph objectGraph) {
-        objectGraph.inject(this);
+    protected void injectModule(AppComponent appComponent) {
+        DetailComponent component = DaggerDetailComponent.builder()
+                .appComponent(MVVMApplication.newInstance().getComponent())
+                .detailModule(new DetailModule())
+                .build();
+        component.inject(this);
     }
 
     @Override
