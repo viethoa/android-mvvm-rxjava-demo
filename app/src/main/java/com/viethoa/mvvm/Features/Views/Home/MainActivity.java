@@ -10,7 +10,7 @@ import com.viethoa.mvvm.Components.modules.HomeModule.DaggerHomeComponent;
 import com.viethoa.mvvm.Components.modules.HomeModule.HomeComponent;
 import com.viethoa.mvvm.Components.modules.HomeModule.HomeModule;
 import com.viethoa.mvvm.Features.MVVMApplication;
-import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainViewModel;
+import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainConstructor;
 import com.viethoa.mvvm.R;
 
 import javax.inject.Inject;
@@ -18,10 +18,10 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
 
-public class MainActivity extends RxBaseActivity {
+public class MainActivity extends RxBaseActivity implements MainConstructor.MainView {
 
     @Inject
-    MainViewModel mainViewModel;
+    MainConstructor.UserActions mainViewModel;
 
     @Bind(R.id.my_recycler_view)
     RecyclerView recyclerView;
@@ -30,7 +30,7 @@ public class MainActivity extends RxBaseActivity {
     protected void injectModule(AppComponent appComponent) {
         HomeComponent homeComponent = DaggerHomeComponent.builder()
                 .appComponent(MVVMApplication.newInstance().getComponent())
-                .homeModule(new HomeModule())
+                .homeModule(new HomeModule(this))
                 .build();
         homeComponent.inject(this);
     }
@@ -44,8 +44,9 @@ public class MainActivity extends RxBaseActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         mainViewModel.vocabularies()
-                .observeOn(AndroidSchedulers.mainThread())
                 .map(vocabularies -> new MainAdapter(this, vocabularies))
+                .observeOn(AndroidSchedulers.mainThread())
+                .compose(bindToLifecycle())
                 .subscribe(recyclerView::setAdapter);
 
         mainViewModel.getGetVocabulariesCommand().call(null);

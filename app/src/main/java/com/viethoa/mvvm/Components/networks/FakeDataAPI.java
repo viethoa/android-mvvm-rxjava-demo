@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class FakeDataAPI {
 
-    public static List<Vocabulary> getVocabularies() {
+    public static List<Vocabulary> getFakeVocabularies() {
         return Arrays.asList(
                 new Vocabulary(1, "Vocabulary", "[və'kæbjuləri]", "The body of words used in a particular language.",
                         "http://www.medhatspca.ca/sites/default/files/news_photos/2014-Apr-15/node-147/cute-little-cat.jpg"),

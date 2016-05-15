@@ -81,18 +81,22 @@ public class DetailActivity extends RxBaseActivity {
 
         // Word
         detailViewModel.word()
+                .compose(bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tvWord::setText);
         // Vocalization
         detailViewModel.vocalization()
+                .compose(bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tvVocalization::setText);
         // Word define
         detailViewModel.wordDefinition()
+                .compose(bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(tvWordDefinition::setText);
         // Word image meaning
         detailViewModel.wordImageMeaning()
+                .compose(bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(url -> {
                     Picasso.with(this).load(vocabulary.getUrl())

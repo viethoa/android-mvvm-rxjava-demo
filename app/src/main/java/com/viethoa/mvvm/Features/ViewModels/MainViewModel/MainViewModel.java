@@ -6,14 +6,56 @@ import com.viethoa.mvvm.Features.Models.Vocabulary;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import rx.Observable;
+import rx.subjects.BehaviorSubject;
 
 /**
  * Created by VietHoa on 27/04/16.
  */
-public interface MainViewModel {
+public class MainViewModel implements MainConstructor.UserActions {
 
-    Observable<List<Vocabulary>> vocabularies();
+    //----------------------------------------------------------------------------------------------
+    // Members
+    //----------------------------------------------------------------------------------------------
 
-    PublishRelay<Void> getGetVocabulariesCommand();
+    private BehaviorSubject<List<Vocabulary>> vocabulariesSubject = BehaviorSubject.create();
+
+    @Override
+    public Observable<List<Vocabulary>> vocabularies() {
+        return vocabulariesSubject.asObservable();
+    }
+
+    //----------------------------------------------------------------------------------------------
+    // Command
+    //----------------------------------------------------------------------------------------------
+
+    private PublishRelay<Void> getVocabulariesCommand = PublishRelay.create();
+
+    @Override
+    public PublishRelay<Void> getGetVocabulariesCommand() {
+        return getVocabulariesCommand;
+    }
+
+    //----------------------------------------------------------------------------------------------
+    // Constructor
+    //----------------------------------------------------------------------------------------------
+
+    @Inject
+    MainConstructor.MainView mainView;
+    @Inject
+    VocabularyInteractor vocabularyInteractor;
+
+    @Inject
+    public MainViewModel() {
+
+        getVocabulariesCommand
+                .concatMap(_void -> vocabularyInteractor.getVocabularies())
+                .subscribe( vocabularies -> {
+                    vocabulariesSubject.onNext(vocabularies);
+                }, throwable -> {
+                    mainView.showErrorMessage(throwable.getMessage());
+                });
+    }
 }

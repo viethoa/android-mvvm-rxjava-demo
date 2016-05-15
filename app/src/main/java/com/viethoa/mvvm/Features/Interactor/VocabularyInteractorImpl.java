@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import rx.Observable;
+
 /**
  * Created by VietHoa on 14/05/16.
  */
@@ -18,7 +20,10 @@ public class VocabularyInteractorImpl implements VocabularyInteractor {
     }
 
     @Override
-    public List<Vocabulary> getVocabularies() {
-        return FakeDataAPI.getVocabularies();
+    public Observable<List<Vocabulary>> getVocabularies() {
+        return Observable.create(subscriber -> {
+            subscriber.onNext(FakeDataAPI.getFakeVocabularies());
+            subscriber.onCompleted();
+        });
     }
 }

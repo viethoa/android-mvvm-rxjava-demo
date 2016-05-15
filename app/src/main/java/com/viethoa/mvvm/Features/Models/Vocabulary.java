@@ -12,6 +12,10 @@ public class Vocabulary implements Serializable {
     private String define;
     private String url;
 
+    public Vocabulary() {
+
+    }
+
     public Vocabulary(int id, String word, String vocalization, String define, String url) {
         this.id = id;
         this.word = word;
