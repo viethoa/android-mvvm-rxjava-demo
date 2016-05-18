@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.viethoa.mvvm.Components.annotations.ActivityScope;
 import com.viethoa.mvvm.Components.modules.AppComponent;
-import com.viethoa.mvvm.Features.ViewModels.MainViewModel.ItemMainViewModel.ItemMainViewModel;
+import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainHolderViewModel.ItemMainViewModel;
 import com.viethoa.mvvm.Features.Views.Home.MainViewHolder;
 
 import dagger.Component;

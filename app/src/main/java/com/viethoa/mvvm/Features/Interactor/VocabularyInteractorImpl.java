@@ -21,9 +21,6 @@ public class VocabularyInteractorImpl implements VocabularyInteractor {
 
     @Override
     public Observable<List<Vocabulary>> getVocabularies() {
-        return Observable.create(subscriber -> {
-            subscriber.onNext(FakeDataAPI.getFakeVocabularies());
-            subscriber.onCompleted();
-        });
+        return Observable.just(FakeDataAPI.getFakeVocabularies());
     }
 }

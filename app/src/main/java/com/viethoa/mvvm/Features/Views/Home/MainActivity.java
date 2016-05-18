@@ -10,7 +10,7 @@ import com.viethoa.mvvm.Components.modules.HomeModule.DaggerHomeComponent;
 import com.viethoa.mvvm.Components.modules.HomeModule.HomeComponent;
 import com.viethoa.mvvm.Components.modules.HomeModule.HomeModule;
 import com.viethoa.mvvm.Features.MVVMApplication;
-import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainConstructor;
+import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainViewModel;
 import com.viethoa.mvvm.R;
 
 import javax.inject.Inject;
@@ -18,10 +18,10 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import rx.android.schedulers.AndroidSchedulers;
 
-public class MainActivity extends RxBaseActivity implements MainConstructor.MainView {
+public class MainActivity extends RxBaseActivity {
 
     @Inject
-    MainConstructor.UserActions mainViewModel;
+    MainViewModel mainViewModel;
 
     @Bind(R.id.my_recycler_view)
     RecyclerView recyclerView;
@@ -30,7 +30,7 @@ public class MainActivity extends RxBaseActivity implements MainConstructor.Main
     protected void injectModule(AppComponent appComponent) {
         HomeComponent homeComponent = DaggerHomeComponent.builder()
                 .appComponent(MVVMApplication.newInstance().getComponent())
-                .homeModule(new HomeModule(this))
+                .homeModule(new HomeModule())
                 .build();
         homeComponent.inject(this);
     }
@@ -44,10 +44,15 @@ public class MainActivity extends RxBaseActivity implements MainConstructor.Main
         recyclerView.setLayoutManager(layoutManager);
 
         mainViewModel.vocabularies()
-                .map(vocabularies -> new MainAdapter(this, vocabularies))
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindToLifecycle())
-                .subscribe(recyclerView::setAdapter);
+                .subscribe(vocabularies -> {
+                    MainAdapter mainAdapter = new MainAdapter(this, vocabularies);
+                    recyclerView.setAdapter(mainAdapter);
+                }, throwable -> {
+                    MainAdapter mainAdapter = new MainAdapter(this, null);
+                    recyclerView.setAdapter(mainAdapter);
+                });
 
         mainViewModel.getGetVocabulariesCommand().call(null);
     }

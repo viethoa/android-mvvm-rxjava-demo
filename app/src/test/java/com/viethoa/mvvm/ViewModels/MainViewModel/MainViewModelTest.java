@@ -4,8 +4,7 @@ import android.content.Context;
 
 import com.viethoa.mvvm.Features.Interactor.VocabularyInteractor;
 import com.viethoa.mvvm.Features.Models.Vocabulary;
-import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainConstructor;
-import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainViewModel;
+import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainViewModelImpl;
 
 import junit.framework.Assert;
 
@@ -42,12 +41,10 @@ public class MainViewModelTest {
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 
     @Mock
-    MainConstructor.MainView mainView;
-    @Mock
     VocabularyInteractor vocabularyInteractor;
 
     @InjectMocks
-    MainViewModel mainViewModel;
+    MainViewModelImpl mainViewModel;
 
     @Before
     public void setUp() throws Exception {

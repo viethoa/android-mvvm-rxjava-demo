@@ -2,8 +2,8 @@ package com.viethoa.mvvm.Components.modules.ItemMainModule;
 
 import android.content.Context;
 
-import com.viethoa.mvvm.Features.ViewModels.MainViewModel.ItemMainViewModel.ItemMainViewModel;
-import com.viethoa.mvvm.Features.ViewModels.MainViewModel.ItemMainViewModel.ItemMainViewModelImp;
+import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainHolderViewModel.ItemMainViewModel;
+import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainHolderViewModel.ItemMainViewModelImp;
 
 import dagger.Module;
 import dagger.Provides;

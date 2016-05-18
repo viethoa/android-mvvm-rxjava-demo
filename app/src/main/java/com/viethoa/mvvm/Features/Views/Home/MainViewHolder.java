@@ -18,7 +18,7 @@ import com.viethoa.mvvm.Components.modules.ItemMainModule.ItemMainComponent;
 import com.viethoa.mvvm.Components.modules.ItemMainModule.ItemMainModule;
 import com.viethoa.mvvm.Features.MVVMApplication;
 import com.viethoa.mvvm.Features.Models.Vocabulary;
-import com.viethoa.mvvm.Features.ViewModels.MainViewModel.ItemMainViewModel.ItemMainViewModel;
+import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainHolderViewModel.ItemMainViewModel;
 import com.viethoa.mvvm.Features.Views.Detail.DetailActivity;
 import com.viethoa.mvvm.R;
 

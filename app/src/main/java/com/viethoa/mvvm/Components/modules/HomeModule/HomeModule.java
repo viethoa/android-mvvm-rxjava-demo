@@ -1,7 +1,7 @@
 package com.viethoa.mvvm.Components.modules.HomeModule;
 
-import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainConstructor;
 import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainViewModel;
+import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainViewModelImpl;
 
 import dagger.Module;
 import dagger.Provides;
@@ -12,19 +12,8 @@ import dagger.Provides;
 @Module
 public class HomeModule {
 
-    private MainConstructor.MainView mainView;
-
-    public HomeModule(MainConstructor.MainView mainView) {
-        this.mainView = mainView;
-    }
-
     @Provides
-    MainConstructor.MainView provideMainView() {
-        return mainView;
-    }
-
-    @Provides
-    MainConstructor.UserActions provideMainViewModel(MainViewModel viewModel) {
+    MainViewModel provideMainViewModel(MainViewModelImpl viewModel) {
         return viewModel;
     }
 }
