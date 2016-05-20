@@ -47,11 +47,12 @@ public class MainActivity extends RxBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // RecycleView
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setEmptyView(emptyView);
 
-        //
+        // Load Vocabularies
         mainViewModel.vocabularies()
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindToLifecycle())

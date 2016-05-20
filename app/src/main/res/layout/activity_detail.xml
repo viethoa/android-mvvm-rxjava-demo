@@ -116,9 +116,18 @@
         android:layout_toEndOf="@id/btn_show_top_message_close_able"
         android:text="Bot Message\nClose able" />
 
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/btn_show_bottom_message"
+        android:layout_marginBottom="@dimen/medium_space"
+        android:layout_marginTop="@dimen/medium_space"
+        android:background="@color/hint_color" />
+
     <FrameLayout
         android:id="@+id/fragment_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/btn_show_bottom_message" />
+        android:layout_below="@id/divider" />
 </RelativeLayout>

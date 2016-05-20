@@ -59,6 +59,7 @@ public class DetailActivity extends RxBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        showToolbarBackIcon();
 
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) {
@@ -70,6 +71,10 @@ public class DetailActivity extends RxBaseActivity {
             finish();
             return;
         }
+
+        // Append Detail Fragment
+        DetailFragment detailFragment = DetailFragment.newInstance();
+        replaceFragment(detailFragment, R.id.fragment_content, true);
 
         // Word
         detailViewModel.word()

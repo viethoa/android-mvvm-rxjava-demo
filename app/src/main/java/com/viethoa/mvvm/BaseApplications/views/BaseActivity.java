@@ -1,9 +1,13 @@
 package com.viethoa.mvvm.BaseApplications.views;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -163,5 +167,33 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //----------------------------------------------------------------------------------------------
+    // Helpers function
+    //----------------------------------------------------------------------------------------------
+
+    protected void replaceFragment(final Fragment fg, final int containerResId, final boolean animated) {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction tx = fm.beginTransaction();
+        if (animated) {
+            tx.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+        }
+
+        tx.replace(containerResId, fg);
+        //tx.addToBackStack(LOG_TAG);
+        tx.commit();
+        fm.executePendingTransactions();
+    }
+
+    protected void openUrlInBrowser(String url) {
+        if (url == null || url.length() <= 0)
+            return;
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        try {
+            intent.setData(Uri.parse(url));
+        } catch (Exception e) {
+            return;
+        }
+        startActivity(intent);
+    }
 
 }
