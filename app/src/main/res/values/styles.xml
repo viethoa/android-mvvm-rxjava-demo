@@ -63,13 +63,10 @@
     <style name="Control.EditText" parent="Widget.AppCompat.EditText">
         <item name="android:background">@color/bright_color</item>
         <item name="android:textColorHint">@color/hint_color</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:maxLines">1</item>
     </style>
 
     <style name="Control.TextView" parent="android:Widget.TextView">
         <item name="android:textColor">@color/dark_color</item>
-        <item name="android:padding">@dimen/medium_space</item>
     </style>
 
     <style name="Control.Button" parent="Widget.AppCompat.Button.Colored">
