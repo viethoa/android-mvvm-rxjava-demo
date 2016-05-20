@@ -27,7 +27,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-10dp"
+        android:layout_marginTop="-15dp"
         android:gravity="end"
         android:orientation="horizontal">
 
@@ -37,10 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_bright_radius"
-            android:paddingBottom="@dimen/large_space"
-            android:paddingEnd="@dimen/xlarge_space"
-            android:paddingStart="@dimen/xlarge_space"
-            android:paddingTop="@dimen/large_space"
+            android:padding="@dimen/xlarge_space"
             android:textAllCaps="true"
             android:text="Cancel" />
 
@@ -50,10 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/button_bright_radius"
-            android:paddingBottom="@dimen/large_space"
-            android:paddingEnd="@dimen/xlarge_space"
-            android:paddingStart="@dimen/xlarge_space"
-            android:paddingTop="@dimen/large_space"
+            android:padding="@dimen/xlarge_space"
             android:textAllCaps="true"
             android:text="Ok" />
     </LinearLayout>

@@ -35,6 +35,11 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/bright_color"
+                android:textColor="@color/dark_color"
+                android:maxLines="1"
+                android:lines="1"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
                 android:hint="@string/hint_enter_your_vocabulary"
                 android:paddingEnd="@dimen/medium_space"
                 android:paddingStart="@dimen/medium_space" />

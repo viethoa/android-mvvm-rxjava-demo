@@ -44,6 +44,7 @@
                 android:layout_weight="1"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:padding="@dimen/empty_space"
                 android:text="Vocabulary"
                 android:textSize="@dimen/font_20_sp"
                 android:textStyle="bold"
@@ -54,6 +55,7 @@
                 style="@style/text_light_large"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/empty_space"
                 android:text="[və'kæbjuləri]"
                 android:textColor="@color/hint_color"
                 android:transitionName="vocalization" />
@@ -72,6 +74,7 @@
             android:layout_toRightOf="@id/iv_word_meaning"
             android:ellipsize="end"
             android:maxLines="2"
+            android:padding="@dimen/empty_space"
             android:text="The body of words used in a particular language."
             android:textSize="@dimen/font_xlarge"
             android:transitionName="word_definition" />

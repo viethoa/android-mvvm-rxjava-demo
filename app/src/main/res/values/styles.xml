@@ -11,44 +11,22 @@
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryDark">@color/primary_color_dark</item>
         <item name="colorAccent">@color/accent_color</item>
+        <item name="textAllCaps">false</item>
 
+        <!-- toolbar -->
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:actionBarStyle">@style/ToolbarStyle</item>
-        <!-- Menu drawer arrow style  -->
-        <!--<item name="drawerArrowStyle">@style/DrawerArrowStyle</item>-->
-        <item name="textAllCaps">false</item>
+        <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
+
+        <!-- Control style -->
+        <item name="android:textViewStyle">@style/Control.TextView</item>
+        <item name="editTextStyle">@style/Control.EditText</item>
+        <item name="buttonStyle">@style/Control.Button</item>
 
         <!-- Popup size style -->
         <item name="android:windowMinWidthMinor">80%</item>
         <item name="android:windowMinWidthMajor">80%</item>
-    </style>
-
-
-    <!--######################## Dialog style ########################-->
-    <style name="Window.DialogStyle" parent="android:Theme.Dialog">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:backgroundDimEnabled">true</item>
-    </style>
-
-    <style name="FullScreen.DialogStyle" parent="@android:style/Theme.Dialog">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowFullscreen">false</item>
-        <item name="android:windowIsFloating">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowMinWidthMinor">100%</item>
-        <item name="android:windowMinWidthMajor">100%</item>
-    </style>
-
-    <!--######################## Menu drawer style ########################-->
-    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="spinBars">true</item>
-        <item name="color">@color/bright_color</item>
     </style>
 
 
@@ -73,6 +51,53 @@
         <item name="android:background">@color/bright_color</item>
         <item name="android:textColor">@color/bright_color</item>
         <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@color/bright_color</item>
+    </style>
+
+
+    <!--######################## Control style ########################-->
+    <style name="Control.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@color/bright_color</item>
+        <item name="android:textColorHint">@color/hint_color</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
+    <style name="Control.TextView" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/dark_color</item>
+        <item name="android:padding">@dimen/medium_space</item>
+    </style>
+
+    <style name="Control.Button" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:textColor">@color/bright_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+
+    <!--######################## Dialog style ########################-->
+    <style name="Window.DialogStyle" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="FullScreen.DialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+        <item name="android:windowMinWidthMajor">100%</item>
     </style>
 
 
