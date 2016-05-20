@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MVVM Demo</string>
+    <string name="hint_enter_your_vocabulary">Enter your vocabulary</string>
+    <string name="you_have_no_vocabularies">You have no vocabularies</string>
+    <string name="dialog_message_title">My Title</string>
+    <string name="dialog_message_text">MVVM material dialog message for testing !!!</string>
+    <string name="dialog_message_positive_text">Got It</string>
+    <string name="dialog_message_negative_text">Cancel</string>
 </resources>

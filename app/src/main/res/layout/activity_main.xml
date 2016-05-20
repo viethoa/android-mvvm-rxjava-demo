@@ -10,29 +10,45 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/primary_color_dark"
         android:minHeight="?attr/actionBarSize"
+        android:paddingBottom="@dimen/small_space"
+        android:paddingEnd="@dimen/medium_space"
+        android:paddingLeft="@dimen/medium_space"
+        android:paddingRight="@dimen/medium_space"
+        android:paddingStart="@dimen/medium_space"
+        android:paddingTop="@dimen/small_space"
         app:contentInsetEnd="0dp"
         app:contentInsetStart="0dp"
         app:popupTheme="@style/ToolbarPopup"
         app:theme="@style/ToolbarStyle"
         app:titleTextAppearance="@style/Toolbar.TitleText">
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:background="@color/bright_color"
             android:layout_height="match_parent">
 
-            <TextView
-                style="@style/text_bright_large"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:padding="@dimen/large_space"
-                android:text="My Vocabulary"
-                android:textSize="@dimen/font_20_sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/bright_color"
+                android:hint="@string/hint_enter_your_vocabulary"
+                android:paddingEnd="@dimen/medium_space"
+                android:paddingStart="@dimen/medium_space" />
+
+            <ImageView
+                android:id="@+id/btn_clear_search"
+                android:scaleType="centerInside"
+                android:src="@mipmap/ic_delete"
+                android:layout_width="45dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
     </android.support.v7.widget.Toolbar>
 
-    <android.support.v7.widget.RecyclerView
+    <com.viethoa.mvvm.Features.Views.CustomeViews.MVVMRecyclerView
         android:id="@+id/my_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -42,4 +58,13 @@
         android:paddingRight="@dimen/small_space"
         android:paddingStart="@dimen/small_space"
         android:scrollbars="vertical" />
+
+    <TextView
+        style="@style/text_light_large"
+        android:id="@+id/no_data_list_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/you_have_no_vocabularies"
+        android:visibility="gone"/>
 </RelativeLayout>

@@ -1,24 +1,37 @@
 package com.viethoa.mvvm.BaseApplications.views;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
+import com.viethoa.mvvm.BaseApplications.dialogs.LoadingDialog;
 import com.viethoa.mvvm.Components.modules.AppComponent;
 import com.viethoa.mvvm.Features.MVVMApplication;
+import com.viethoa.mvvm.R;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
  * Created by VietHoa on 27/04/16.
  */
-public abstract class BaseActivity extends AppCompatActivity implements BaseView {
+public abstract class BaseActivity extends AppCompatActivity {
+    private LoadingDialog loadingDialog;
+
+    @Nullable
+    @Bind(R.id.toolbar)
+    protected Toolbar toolBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        this.loadingDialog = LoadingDialog.newInstance(this);
         initializeDagger();
     }
 
@@ -26,11 +39,26 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
         ButterKnife.bind(this);
+        if (toolBar == null)
+            return;
+
+        setSupportActionBar(toolBar);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    //----------------------------------------------------------------------------------------------
+    // Setup dagger
+    //----------------------------------------------------------------------------------------------
+
+    protected abstract void injectModule(AppComponent appComponent);
+
+    private void initializeDagger() {
+        MVVMApplication application = MVVMApplication.newInstance();
+        injectModule(application.getComponent());
     }
 
     //----------------------------------------------------------------------------------------------
@@ -48,27 +76,92 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         }
     }
 
-    //----------------------------------------------------------------------------------------------
-    // Setup dagger
-    //----------------------------------------------------------------------------------------------
-
-    protected abstract void injectModule(AppComponent appComponent);
-
-    private void initializeDagger() {
-        MVVMApplication application = MVVMApplication.newInstance();
-        injectModule(application.getComponent());
-    }
-
-    //----------------------------------------------------------------------------------------------
-    // Base Event
-    //----------------------------------------------------------------------------------------------
-
-    @Override
-    public void showErrorMessage(String message) {
-        if (TextUtils.isEmpty(message))
+    protected void showToolbarBackIcon() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar == null)
             return;
 
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
+
+    protected void showToolbarBackIcon(@DrawableRes int backIcon) {
+        if (toolBar == null)
+            return;
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar == null)
+            return;
+
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        toolBar.setNavigationIcon(backIcon);
+    }
+
+    protected void showToolbarLogo(@DrawableRes int logoIcon) {
+        if (toolBar == null)
+            return;
+
+        toolBar.setLogo(logoIcon);
+    }
+
+    protected void showToolbarMenuIcon(@DrawableRes int menuIcon) {
+        if (toolBar == null)
+            return;
+
+        toolBar.setNavigationIcon(menuIcon);
+    }
+
+    //----------------------------------------------------------------------------------------------
+    // Loading Dialog
+    //----------------------------------------------------------------------------------------------
+
+    protected void showLoadingDialog() {
+        if (loadingDialog == null)
+            return;
+
+        if (loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
+
+        loadingDialog.show();
+    }
+
+    protected void dismissLoadingDialog() {
+        if (loadingDialog == null)
+            return;
+        if (!loadingDialog.isShowing())
+            return;
+
+        loadingDialog.dismiss();
+    }
+
+    //----------------------------------------------------------------------------------------------
+    // Start Activity
+    //----------------------------------------------------------------------------------------------
+
+    protected void startActivity(Class clazz) {
+        startActivity(clazz, null);
+    }
+
+    protected void startActivity(Class clazz, Bundle bundle) {
+        Intent intent = new Intent(this, clazz);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
+    }
+
+    protected void startNewSingleTaskActivity(Class clazz) {
+        startNewSingleTaskActivity(clazz, null);
+    }
+
+    protected void startNewSingleTaskActivity(Class clazz, Bundle bundle) {
+        Intent intent = new Intent(this, clazz);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
 
 }

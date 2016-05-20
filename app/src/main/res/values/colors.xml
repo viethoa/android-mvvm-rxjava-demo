@@ -5,6 +5,11 @@
     <color name="primary_color_dark">#303F9F</color>
     <color name="accent_color">#FF4081</color>
 
+    <color name="colorPrimary90">#E63F51B5</color>
+    <color name="colorPrimary80">#CC3F51B5</color>
+    <color name="colorPrimaryDark90">#E6303F9F</color>
+    <color name="colorPrimaryDark80">#CC303F9F</color>s
+
     <color name="transparent">#00000000</color>
     <color name="high_light_color">#fafafa</color>
     <color name="line_color">#d6d6d6</color>

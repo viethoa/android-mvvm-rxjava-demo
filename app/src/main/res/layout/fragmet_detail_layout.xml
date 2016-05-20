@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_show_message_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_definition"
+        android:text="Message Dialog" />
+
+    <Button
+        android:id="@+id/btn_show_loading_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_definition"
+        android:layout_toEndOf="@id/btn_show_message_dialog"
+        android:text="Loading Dialog" />
+
+    <Button
+        android:id="@+id/btn_show_top_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_definition"
+        android:layout_toEndOf="@id/btn_show_loading_dialog"
+        android:text="Top Message" />
+
+    <Button
+        android:id="@+id/btn_show_bottom_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_show_message_dialog"
+        android:text="Bottom Message" />
+
+    <Button
+        android:id="@+id/btn_show_top_message_close_able"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_show_message_dialog"
+        android:layout_toEndOf="@id/btn_show_bottom_message"
+        android:text="Top Message\nClose able" />
+
+    <Button
+        android:id="@+id/btn_show_bottom_message_close_able"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_show_message_dialog"
+        android:layout_toEndOf="@id/btn_show_top_message_close_able"
+        android:text="Bot Message\nClose able" />
+</RelativeLayout>

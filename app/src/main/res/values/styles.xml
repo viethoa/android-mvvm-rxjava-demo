@@ -26,15 +26,24 @@
 
 
     <!--######################## Dialog style ########################-->
-    <style name="CustomDialogLoading" parent="android:Theme.Dialog">
-        <item name="android:windowIsTranslucent">true</item>
+    <style name="Window.DialogStyle" parent="android:Theme.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+    <style name="FullScreen.DialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+    </style>
 
     <!--######################## Menu drawer style ########################-->
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
