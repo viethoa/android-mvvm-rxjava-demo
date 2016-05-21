@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/empty_space"
                 android:text="[və'kæbjuləri]"
-                android:textColor="@color/hint_color"
+                android:textColor="@color/colorHint"
                 android:transitionName="vocalization" />
         </LinearLayout>
 

@@ -19,6 +19,8 @@ import com.viethoa.mvvm.Features.Models.Vocabulary;
 import com.viethoa.mvvm.Features.ViewModels.DetailViewModel.DetailViewModel;
 import com.viethoa.mvvm.R;
 
+import java.util.Random;
+
 import javax.inject.Inject;
 
 import butterknife.Bind;
@@ -155,5 +157,15 @@ public class DetailActivity extends RxBaseActivity {
         showLoadingDialog();
         // auto dismiss after 5s.
         new Handler().postDelayed(this::dismissLoadingDialog, 5000);
+    }
+
+    @OnClick(R.id.btn_show_top_message)
+    protected void BtnShowTopNotificationClicked() {
+        showTopSuccessMessage("message " + new Random().nextInt());
+    }
+
+    @OnClick(R.id.btn_show_bottom_message)
+    protected void BtnShowBottomNotificationClicked() {
+        showBottomSuccessMessage(R.string.test_success_message);
     }
 }

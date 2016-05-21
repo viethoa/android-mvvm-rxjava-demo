@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/large_space"
             android:text="[və'kæbjuləri]"
-            android:textColor="@color/hint_color"
+            android:textColor="@color/colorHint"
             android:transitionName="vocalization" />
     </LinearLayout>
 
@@ -82,6 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_definition"
+        android:layout_toRightOf="@id/btn_show_message_dialog"
         android:layout_toEndOf="@id/btn_show_message_dialog"
         android:text="Loading Dialog" />
 
@@ -90,6 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_definition"
+        android:layout_toRightOf="@id/btn_show_loading_dialog"
         android:layout_toEndOf="@id/btn_show_loading_dialog"
         android:text="Top Message" />
 
@@ -105,6 +107,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_show_message_dialog"
+        android:layout_toRightOf="@id/btn_show_bottom_message"
         android:layout_toEndOf="@id/btn_show_bottom_message"
         android:text="Top Message\nClose able" />
 
@@ -113,6 +116,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_show_message_dialog"
+        android:layout_toRightOf="@id/btn_show_top_message_close_able"
         android:layout_toEndOf="@id/btn_show_top_message_close_able"
         android:text="Bot Message\nClose able" />
 
@@ -123,7 +127,7 @@
         android:layout_below="@id/btn_show_bottom_message"
         android:layout_marginBottom="@dimen/medium_space"
         android:layout_marginTop="@dimen/medium_space"
-        android:background="@color/hint_color" />
+        android:background="@color/colorHint" />
 
     <FrameLayout
         android:id="@+id/fragment_content"

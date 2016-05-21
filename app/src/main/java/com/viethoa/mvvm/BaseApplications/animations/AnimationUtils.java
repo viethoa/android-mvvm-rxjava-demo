@@ -16,7 +16,7 @@ public class AnimationUtils {
     public static void shakeAnimationEditText(final EditText editText) {
         // fade-in color
         Integer errorColor = Color.RED;
-        Integer currentColor = R.color.hint_color;
+        Integer currentColor = R.color.colorHint;
         ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), errorColor, currentColor);
         colorAnimation.setDuration(1000);
         colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -37,7 +37,7 @@ public class AnimationUtils {
     public static void shakeAnimationTextView(final TextView textView) {
         // fade-in color
         Integer errorColor = Color.RED;
-        Integer currentColor = R.color.hint_color;
+        Integer currentColor = R.color.colorHint;
         ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), errorColor, currentColor);
         colorAnimation.setDuration(500);
         colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {

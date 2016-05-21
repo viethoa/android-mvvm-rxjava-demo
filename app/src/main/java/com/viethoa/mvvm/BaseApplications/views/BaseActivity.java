@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.viethoa.mvvm.BaseApplications.dialogs.LoadingDialog;
+import com.viethoa.mvvm.BaseApplications.snackbars.BottomSnackBarMessage;
+import com.viethoa.mvvm.BaseApplications.snackbars.TopSnackBarMessage;
 import com.viethoa.mvvm.Components.modules.AppComponent;
 import com.viethoa.mvvm.Features.MVVMApplication;
 import com.viethoa.mvvm.R;
@@ -26,6 +28,8 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseActivity extends AppCompatActivity {
     private LoadingDialog loadingDialog;
+    private TopSnackBarMessage topSnackBarMessage;
+    private BottomSnackBarMessage bottomSnackBarMessage;
 
     @Nullable
     @Bind(R.id.toolbar)
@@ -35,8 +39,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.loadingDialog = LoadingDialog.newInstance(this);
         initializeDagger();
+        loadingDialog = LoadingDialog.newInstance(this);
+        topSnackBarMessage = new TopSnackBarMessage(this);
+        bottomSnackBarMessage = new BottomSnackBarMessage(this);
     }
 
     @Override
@@ -139,30 +145,65 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     //----------------------------------------------------------------------------------------------
+    // SnackBar Notification Messages
+    //----------------------------------------------------------------------------------------------
+
+    protected void showTopErrorMessage(int messageRes) {
+        topSnackBarMessage.showErrorMessage(messageRes);
+    }
+
+    protected void showTopWarningMessage(int messageRes) {
+        topSnackBarMessage.showWarningMessage(messageRes);
+    }
+
+    protected void showTopSuccessMessage(int messageRes) {
+        topSnackBarMessage.showSuccessMessage(messageRes);
+    }
+
+    protected void showTopErrorMessage(String messageRes) {
+        topSnackBarMessage.showErrorMessage(messageRes);
+    }
+
+    protected void showTopWarningMessage(String messageRes) {
+        topSnackBarMessage.showWarningMessage(messageRes);
+    }
+
+    protected void showTopSuccessMessage(String messageRes) {
+        topSnackBarMessage.showSuccessMessage(messageRes);
+    }
+
+    protected void showBottomErrorMessage(int messageRes) {
+        bottomSnackBarMessage.showErrorMessage(messageRes);
+    }
+
+    protected void showBottomWarningMessage(int messageRes) {
+        bottomSnackBarMessage.showWarningMessage(messageRes);
+    }
+
+    protected void showBottomSuccessMessage(int messageRes) {
+        bottomSnackBarMessage.showSuccessMessage(messageRes);
+    }
+
+    protected void showBottomErrorMessage(String messageRes) {
+        bottomSnackBarMessage.showErrorMessage(messageRes);
+    }
+
+    protected void showBottomWarningMessage(String messageRes) {
+        bottomSnackBarMessage.showWarningMessage(messageRes);
+    }
+
+    protected void showBottomSuccessMessage(String messageRes) {
+        bottomSnackBarMessage.showSuccessMessage(messageRes);
+    }
+
+    //----------------------------------------------------------------------------------------------
     // Start Activity
     //----------------------------------------------------------------------------------------------
 
-    protected void startActivity(Class clazz) {
-        startActivity(clazz, null);
-    }
+    protected void startNewSingleTaskActivity(Intent intent) {
+        if (intent == null)
+            return;
 
-    protected void startActivity(Class clazz, Bundle bundle) {
-        Intent intent = new Intent(this, clazz);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        startActivity(intent);
-    }
-
-    protected void startNewSingleTaskActivity(Class clazz) {
-        startNewSingleTaskActivity(clazz, null);
-    }
-
-    protected void startNewSingleTaskActivity(Class clazz, Bundle bundle) {
-        Intent intent = new Intent(this, clazz);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

@@ -2,9 +2,9 @@
 <resources>
 
     <style name="AppTheme" parent="BaseAppTheme">
-        <item name="android:colorPrimary">@color/primary_color</item>
-        <item name="android:colorPrimaryDark">@color/primary_color_dark</item>
-        <item name="android:colorAccent">@color/accent_color</item>
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
         <item name="android:textAllCaps">false</item>
     </style>
 

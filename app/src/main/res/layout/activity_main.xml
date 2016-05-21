@@ -8,7 +8,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/primary_color_dark"
+        android:background="@color/colorPrimaryDark"
         android:minHeight="?attr/actionBarSize"
         android:paddingBottom="@dimen/small_space"
         android:paddingEnd="@dimen/medium_space"
@@ -26,7 +26,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:gravity="center_vertical"
-            android:background="@color/bright_color"
+            android:background="@color/colorBright"
             android:layout_height="match_parent">
 
             <EditText
@@ -34,8 +34,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@color/bright_color"
-                android:textColor="@color/dark_color"
+                android:background="@color/colorBright"
+                android:textColor="@color/colorDark"
                 android:maxLines="1"
                 android:lines="1"
                 android:inputType="text"

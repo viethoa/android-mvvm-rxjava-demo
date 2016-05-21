@@ -4,13 +4,13 @@
     <style name="AppTheme" parent="BaseAppTheme" />
 
     <style name="Application_Theme" parent="BaseAppTheme">
-        <item name="android:windowBackground">@color/bright_color</item>
+        <item name="android:windowBackground">@color/colorBright</item>
     </style>
 
     <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/primary_color</item>
-        <item name="colorPrimaryDark">@color/primary_color_dark</item>
-        <item name="colorAccent">@color/accent_color</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="textAllCaps">false</item>
 
         <!-- toolbar -->
@@ -32,45 +32,45 @@
 
     <!--######################## Toolbar style ########################-->
     <style name="ToolbarStyle" parent="Widget.AppCompat.Toolbar">
-        <item name="android:textColorPrimary">@color/bright_color</item>
-        <item name="android:textColorSecondary">@color/bright_color</item>
+        <item name="android:textColorPrimary">@color/colorBright</item>
+        <item name="android:textColorSecondary">@color/colorBright</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:popupMenuStyle">@style/ToolbarPopup</item>
         <item name="android:textSize">@dimen/font_medium</item>
-        <item name="actionMenuTextColor">@color/bright_color</item>
-        <item name="android:actionMenuTextColor">@color/bright_color</item>
+        <item name="actionMenuTextColor">@color/colorBright</item>
+        <item name="android:actionMenuTextColor">@color/colorBright</item>
     </style>
 
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">@dimen/font_medium</item>
-        <item name="android:textColor">@color/bright_color</item>
+        <item name="android:textColor">@color/colorBright</item>
         <item name="android:layout_gravity">center_vertical</item>
     </style>
 
     <style name="ToolbarPopup" parent="Widget.AppCompat.Light.PopupMenu">
-        <item name="android:background">@color/bright_color</item>
-        <item name="android:textColor">@color/bright_color</item>
+        <item name="android:background">@color/colorBright</item>
+        <item name="android:textColor">@color/colorBright</item>
         <item name="android:layout_gravity">center_vertical</item>
     </style>
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">true</item>
-        <item name="color">@color/bright_color</item>
+        <item name="color">@color/colorBright</item>
     </style>
 
 
     <!--######################## Control style ########################-->
     <style name="Control.EditText" parent="Widget.AppCompat.EditText">
-        <item name="android:background">@color/bright_color</item>
-        <item name="android:textColorHint">@color/hint_color</item>
+        <item name="android:background">@color/colorBright</item>
+        <item name="android:textColorHint">@color/colorHint</item>
     </style>
 
     <style name="Control.TextView" parent="android:Widget.TextView">
-        <item name="android:textColor">@color/dark_color</item>
+        <item name="android:textColor">@color/colorDark</item>
     </style>
 
     <style name="Control.Button" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:textColor">@color/bright_color</item>
+        <item name="android:textColor">@color/colorBright</item>
         <item name="android:gravity">center</item>
         <item name="android:clickable">true</item>
         <item name="android:textAllCaps">true</item>
@@ -100,92 +100,92 @@
 
     <!--######################## TextView style ########################-->
     <style name="text_primary_large">
-        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textSize">@dimen/font_large</item>
     </style>
 
     <style name="text_primary_medium">
-        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textSize">@dimen/font_medium</item>
     </style>
 
     <style name="text_primary_small">
-        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:textSize">@dimen/font_small</item>
     </style>
 
     <style name="text_accent_large">
-        <item name="android:textColor">@color/accent_color</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textSize">@dimen/font_large</item>
     </style>
 
     <style name="text_accent_medium">
-        <item name="android:textColor">@color/accent_color</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textSize">@dimen/font_medium</item>
     </style>
 
     <style name="text_accent_small">
-        <item name="android:textColor">@color/accent_color</item>
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textSize">@dimen/font_small</item>
     </style>
 
     <style name="text_black_medium">
-        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textSize">@dimen/font_medium</item>
     </style>
 
     <style name="text_black_small">
-        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textSize">@dimen/font_small</item>
     </style>
 
     <style name="text_black_large">
-        <item name="android:textColor">@color/black_color</item>
+        <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textSize">@dimen/font_large</item>
     </style>
 
     <style name="text_dark_medium">
-        <item name="android:textColor">@color/dark_color</item>
+        <item name="android:textColor">@color/colorDark</item>
         <item name="android:textSize">@dimen/font_medium</item>
     </style>
 
     <style name="text_dark_small">
-        <item name="android:textColor">@color/dark_color</item>
+        <item name="android:textColor">@color/colorDark</item>
         <item name="android:textSize">@dimen/font_small</item>
     </style>
 
     <style name="text_dark_large">
-        <item name="android:textColor">@color/dark_color</item>
+        <item name="android:textColor">@color/colorDark</item>
         <item name="android:textSize">@dimen/font_large</item>
     </style>
 
     <style name="text_light_medium">
-        <item name="android:textColor">@color/light_color</item>
+        <item name="android:textColor">@color/colorLight</item>
         <item name="android:textSize">@dimen/font_medium</item>
     </style>
 
     <style name="text_light_small">
-        <item name="android:textColor">@color/light_color</item>
+        <item name="android:textColor">@color/colorLight</item>
         <item name="android:textSize">@dimen/font_small</item>
     </style>
 
     <style name="text_light_large">
-        <item name="android:textColor">@color/light_color</item>
+        <item name="android:textColor">@color/colorLight</item>
         <item name="android:textSize">@dimen/font_large</item>
     </style>
 
     <style name="text_bright_large">
-        <item name="android:textColor">@color/bright_color</item>
+        <item name="android:textColor">@color/colorBright</item>
         <item name="android:textSize">@dimen/font_large</item>
     </style>
 
     <style name="text_bright_medium">
-        <item name="android:textColor">@color/bright_color</item>
+        <item name="android:textColor">@color/colorBright</item>
         <item name="android:textSize">@dimen/font_medium</item>
     </style>
 
     <style name="text_bright_small">
-        <item name="android:textColor">@color/bright_color</item>
+        <item name="android:textColor">@color/colorBright</item>
         <item name="android:textSize">@dimen/font_small</item>
     </style>
 
