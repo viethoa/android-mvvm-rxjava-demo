@@ -28,26 +28,26 @@ public class MessageDialog extends Dialog {
 
     public MessageDialog(Context context, @StringRes int title, @StringRes int message, @StringRes int singleButtonText,
                          MessageDialogSingleListener listener) {
-        super(context);
+        super(context, R.style.FullScreen_DialogStyle);
         initialize(context.getString(title), context.getString(message), context.getString(singleButtonText), null, listener, null);
     }
 
     public MessageDialog(Context context, @StringRes int title, @StringRes int message, @StringRes int negativeText,
                          @StringRes int positiveText, MessageDialogListener listener) {
-        super(context);
+        super(context, R.style.FullScreen_DialogStyle);
         initialize(context.getString(title), context.getString(message), context.getString(negativeText),
                 context.getString(positiveText), null, listener);
     }
 
     public MessageDialog(Context context, String title, String message, String singleButtonText,
                          MessageDialogSingleListener listener) {
-        super(context);
+        super(context, R.style.FullScreen_DialogStyle);
         initialize(title, message, singleButtonText, null, listener, null);
     }
 
     public MessageDialog(Context context, String title, String message, String negativeText,
                          String positiveText, MessageDialogListener listener) {
-        super(context);
+        super(context, R.style.FullScreen_DialogStyle);
         initialize(title, message, negativeText, positiveText, null, listener);
     }
 

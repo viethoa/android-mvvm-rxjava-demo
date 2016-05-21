@@ -1,10 +1,12 @@
 package com.viethoa.mvvm.Features.Views.Home;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.View;
@@ -107,15 +109,21 @@ public class MainViewHolder extends RecyclerView.ViewHolder {
                 });
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void navigationToDetailActivityWithRippleDelay(Context context, Intent intent) {
         if (intent == null || context == null)
             return;
 
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP) {
+            context.startActivity(intent);
+            return;
+        }
+
         ActivityOptions compat = ActivityOptions.makeSceneTransitionAnimation((Activity) mContext,
-                new Pair(tvWord, tvWord.getTransitionName()),
-                new Pair(tvVocalization, tvVocalization.getTransitionName()),
-                new Pair(tvWordDefinition, tvWordDefinition.getTransitionName()),
-                new Pair(ivWordImageMeaning, ivWordImageMeaning.getTransitionName()));
+                    new Pair(tvWord, tvWord.getTransitionName()),
+                    new Pair(tvVocalization, tvVocalization.getTransitionName()),
+                    new Pair(tvWordDefinition, tvWordDefinition.getTransitionName()),
+                    new Pair(ivWordImageMeaning, ivWordImageMeaning.getTransitionName()));
 
         Observable.just(intent)
                 .delay(200, TimeUnit.MILLISECONDS)

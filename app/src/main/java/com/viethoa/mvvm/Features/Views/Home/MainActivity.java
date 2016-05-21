@@ -17,9 +17,13 @@ import com.viethoa.mvvm.Components.modules.HomeModule.DaggerHomeComponent;
 import com.viethoa.mvvm.Components.modules.HomeModule.HomeComponent;
 import com.viethoa.mvvm.Components.modules.HomeModule.HomeModule;
 import com.viethoa.mvvm.Features.MVVMApplication;
+import com.viethoa.mvvm.Features.Models.Vocabulary;
 import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainViewModel;
 import com.viethoa.mvvm.Features.Views.CustomeViews.MVVMRecyclerView;
 import com.viethoa.mvvm.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -27,13 +31,18 @@ import butterknife.Bind;
 import butterknife.OnClick;
 import rx.android.schedulers.AndroidSchedulers;
 
+import static com.jakewharton.rxbinding.widget.RxTextView.textChanges;
+
 public class MainActivity extends RxBaseActivity {
+    private MainAdapter mainAdapter;
 
     @Inject
     MainViewModel mainViewModel;
 
     @Bind(R.id.et_search)
     EditText etSearch;
+    @Bind(R.id.search_progress)
+    View searchProgress;
     @Bind(R.id.my_recycler_view)
     MVVMRecyclerView recyclerView;
     @Bind(R.id.no_data_list_view)
@@ -52,6 +61,11 @@ public class MainActivity extends RxBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         initializeSearchView();
         initializeRecycleView();
@@ -71,14 +85,22 @@ public class MainActivity extends RxBaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(bindToLifecycle())
                 .subscribe(vocabularies -> {
-                    MainAdapter mainAdapter = new MainAdapter(this, vocabularies);
-                    recyclerView.setAdapter(mainAdapter);
+                    showVocabularies(vocabularies);
                 }, throwable -> {
-                    MainAdapter mainAdapter = new MainAdapter(this, null);
-                    recyclerView.setAdapter(mainAdapter);
+                    showVocabularies(new ArrayList<>());
                 });
 
         mainViewModel.getGetVocabulariesCommand().call(null);
+    }
+
+    private void showVocabularies(List<Vocabulary> vocabularies) {
+        searchProgress.setVisibility(View.GONE);
+        if (mainAdapter == null) {
+            MainAdapter mainAdapter = new MainAdapter(this, vocabularies);
+            recyclerView.setAdapter(mainAdapter);
+        } else {
+            mainAdapter.refreshData(vocabularies);
+        }
     }
 
     //----------------------------------------------------------------------------------------------
@@ -87,7 +109,18 @@ public class MainActivity extends RxBaseActivity {
 
     private void initializeSearchView() {
         etSearch.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+
+        //editorActionEvents(etSearch)
         etSearch.setOnEditorActionListener(new SearchEditorListener());
+
+        // Bind text input and start search
+        textChanges(etSearch)
+                .map(CharSequence::toString)
+                .compose(bindToLifecycle())
+                .subscribe(text -> {
+                    searchProgress.setVisibility(View.VISIBLE);
+                    mainViewModel.getSearchVocabulariesCommand().call(text);
+                });
     }
 
     private class SearchEditorListener implements TextView.OnEditorActionListener {

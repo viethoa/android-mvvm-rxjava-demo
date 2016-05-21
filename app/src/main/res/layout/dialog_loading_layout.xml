@@ -17,6 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/large_space"
+        android:layout_marginLeft="@dimen/large_space"
         android:gravity="center"
         android:text="LOADING..." />
 </LinearLayout>

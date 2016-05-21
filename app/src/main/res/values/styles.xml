@@ -48,7 +48,7 @@
     </style>
 
     <style name="ToolbarPopup" parent="Widget.AppCompat.Light.PopupMenu">
-        <item name="android:background">@color/colorBright</item>
+        <item name="android:background">@color/toolbar_transparent</item>
         <item name="android:textColor">@color/colorBright</item>
         <item name="android:layout_gravity">center_vertical</item>
     </style>

@@ -23,6 +23,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainViewHolder> {
         this.mDataArray = mDataArray;
     }
 
+    public void refreshData(List<Vocabulary> dataSet) {
+        this.mDataArray = dataSet;
+        notifyDataSetChanged();
+    }
+
     @Override
     public MainViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main_layout, parent, false);

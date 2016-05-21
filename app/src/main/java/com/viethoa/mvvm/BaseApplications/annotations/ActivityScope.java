@@ -1,4 +1,4 @@
-package com.viethoa.mvvm.Components.annotations;
+package com.viethoa.mvvm.BaseApplications.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

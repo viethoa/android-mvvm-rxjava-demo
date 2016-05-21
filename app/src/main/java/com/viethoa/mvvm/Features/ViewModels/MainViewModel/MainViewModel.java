@@ -15,4 +15,6 @@ public interface MainViewModel {
     Observable<List<Vocabulary>> vocabularies();
 
     PublishRelay<Void> getGetVocabulariesCommand();
+
+    PublishRelay<String> getSearchVocabulariesCommand();
 }

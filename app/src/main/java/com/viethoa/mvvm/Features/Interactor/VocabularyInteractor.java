@@ -12,4 +12,6 @@ import rx.Observable;
 public interface VocabularyInteractor {
 
     Observable<List<Vocabulary>> getVocabularies();
+
+    Observable<List<Vocabulary>> searchVocabularies(String searchText);
 }

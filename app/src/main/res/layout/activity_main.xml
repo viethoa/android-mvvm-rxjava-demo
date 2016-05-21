@@ -22,35 +22,48 @@
         app:theme="@style/ToolbarStyle"
         app:titleTextAppearance="@style/Toolbar.TitleText">
 
-        <LinearLayout
-            android:orientation="horizontal"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:gravity="center_vertical"
+            android:layout_height="match_parent"
             android:background="@color/colorBright"
-            android:layout_height="match_parent">
-
-            <EditText
-                android:id="@+id/et_search"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/colorBright"
-                android:textColor="@color/colorDark"
-                android:maxLines="1"
-                android:lines="1"
-                android:inputType="text"
-                android:imeOptions="actionSearch"
-                android:hint="@string/hint_enter_your_vocabulary"
-                android:paddingEnd="@dimen/medium_space"
-                android:paddingStart="@dimen/medium_space" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/btn_clear_search"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:scaleType="centerInside"
-                android:src="@mipmap/ic_delete"
-                android:layout_width="45dp"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+                android:src="@mipmap/ic_delete" />
+
+            <ProgressBar
+                android:id="@+id/search_progress"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:indeterminateDrawable="@drawable/circle_progress_light"
+                android:padding="@dimen/small_space"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/btn_clear_search"
+                android:layout_toStartOf="@id/btn_clear_search"
+                android:background="@color/colorBright"
+                android:hint="@string/hint_enter_your_vocabulary"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:lines="1"
+                android:maxLines="1"
+                android:paddingEnd="@dimen/medium_space"
+                android:paddingStart="@dimen/medium_space"
+                android:textColor="@color/colorDark" />
+        </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
     <com.viethoa.mvvm.Features.Views.CustomeViews.MVVMRecyclerView
@@ -65,11 +78,11 @@
         android:scrollbars="vertical" />
 
     <TextView
-        style="@style/text_light_large"
         android:id="@+id/no_data_list_view"
+        style="@style/text_light_large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:text="@string/you_have_no_vocabularies"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 </RelativeLayout>

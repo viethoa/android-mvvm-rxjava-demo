@@ -5,6 +5,7 @@ import com.viethoa.mvvm.Features.Interactor.VocabularyInteractor;
 import com.viethoa.mvvm.Features.Models.Vocabulary;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -33,10 +34,16 @@ public class MainViewModelImpl implements MainViewModel {
     //----------------------------------------------------------------------------------------------
 
     private PublishRelay<Void> getVocabulariesCommand = PublishRelay.create();
+    private PublishRelay<String> searchVocabulariesCommand = PublishRelay.create();
 
     @Override
     public PublishRelay<Void> getGetVocabulariesCommand() {
         return getVocabulariesCommand;
+    }
+
+    @Override
+    public PublishRelay<String> getSearchVocabulariesCommand() {
+        return searchVocabulariesCommand;
     }
 
     //----------------------------------------------------------------------------------------------
@@ -49,10 +56,21 @@ public class MainViewModelImpl implements MainViewModel {
     @Inject
     public MainViewModelImpl() {
 
+        // Get Vocabularies
         getVocabulariesCommand
                 .subscribeOn(Schedulers.io())
                 .concatMap(_void -> vocabularyInteractor.getVocabularies())
                 .subscribe( vocabularies -> {
+                    vocabulariesSubject.onNext(vocabularies);
+                }, throwable -> {
+                    vocabulariesSubject.onError(throwable);
+                });
+
+        // Search Vocabularies
+        searchVocabulariesCommand
+                .debounce(500, TimeUnit.MILLISECONDS)
+                .concatMap(text -> vocabularyInteractor.searchVocabularies(text))
+                .subscribe(vocabularies -> {
                     vocabulariesSubject.onNext(vocabularies);
                 }, throwable -> {
                     vocabulariesSubject.onError(throwable);
