@@ -6,5 +6,4 @@
     <string name="dialog_message_text">MVVM material dialog message for testing !!!</string>
     <string name="dialog_message_positive_text">Got It</string>
     <string name="dialog_message_negative_text">Cancel</string>
-    <string name="test_success_message">Test top notification</string>
 </resources>

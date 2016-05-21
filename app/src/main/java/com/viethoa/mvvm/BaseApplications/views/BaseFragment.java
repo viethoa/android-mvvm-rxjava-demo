@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.viethoa.mvvm.BaseApplications.dialogs.LoadingDialog;
+import com.viethoa.mvvm.BaseApplications.snackbars.BottomSnackBarMessage;
+import com.viethoa.mvvm.BaseApplications.snackbars.TopSnackBarMessage;
 import com.viethoa.mvvm.Components.modules.AppComponent;
 import com.viethoa.mvvm.Features.MVVMApplication;
 
@@ -19,24 +21,8 @@ import butterknife.ButterKnife;
  */
 public abstract class BaseFragment extends Fragment {
     private LoadingDialog loadingDialog;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View contentView = setContentView(inflater, container);
-
-        // ButterKnife injection.
-        ButterKnife.bind(this, contentView);
-        // Loading dialog initialize;
-        loadingDialog = new LoadingDialog(getContext());
-
-        return contentView;
-    }
-
-    protected abstract View setContentView(LayoutInflater inflater, ViewGroup container);
-
-    //----------------------------------------------------------------------------------------------
-    // dagger 2 injection
-    //----------------------------------------------------------------------------------------------
+    private TopSnackBarMessage topSnackBarMessage;
+    private BottomSnackBarMessage bottomSnackBarMessage;
 
     @Override
     public void onAttach(Context context) {
@@ -46,6 +32,24 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected abstract void injectModule(AppComponent appComponent);
+
+    //----------------------------------------------------------------------------------------------
+    // Configuration
+    //----------------------------------------------------------------------------------------------
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View contentView = setContentView(inflater, container);
+        ButterKnife.bind(this, contentView);
+
+        loadingDialog = new LoadingDialog(getContext());
+        topSnackBarMessage = new TopSnackBarMessage(getActivity());
+        bottomSnackBarMessage = new BottomSnackBarMessage(getActivity());
+
+        return contentView;
+    }
+
+    protected abstract View setContentView(LayoutInflater inflater, ViewGroup container);
 
     //----------------------------------------------------------------------------------------------
     // Loading Dialog
@@ -69,6 +73,58 @@ public abstract class BaseFragment extends Fragment {
             return;
 
         loadingDialog.dismiss();
+    }
+
+    //----------------------------------------------------------------------------------------------
+    // SnackBar Notification Messages
+    //----------------------------------------------------------------------------------------------
+
+    protected void showTopErrorMessage(int messageRes) {
+        topSnackBarMessage.showErrorMessage(messageRes);
+    }
+
+    protected void showTopWarningMessage(int messageRes) {
+        topSnackBarMessage.showWarningMessage(messageRes);
+    }
+
+    protected void showTopSuccessMessage(int messageRes) {
+        topSnackBarMessage.showSuccessMessage(messageRes);
+    }
+
+    protected void showTopErrorMessage(String messageRes) {
+        topSnackBarMessage.showErrorMessage(messageRes);
+    }
+
+    protected void showTopWarningMessage(String messageRes) {
+        topSnackBarMessage.showWarningMessage(messageRes);
+    }
+
+    protected void showTopSuccessMessage(String messageRes) {
+        topSnackBarMessage.showSuccessMessage(messageRes);
+    }
+
+    protected void showBottomErrorMessage(int messageRes) {
+        bottomSnackBarMessage.showErrorMessage(messageRes);
+    }
+
+    protected void showBottomWarningMessage(int messageRes) {
+        bottomSnackBarMessage.showWarningMessage(messageRes);
+    }
+
+    protected void showBottomSuccessMessage(int messageRes) {
+        bottomSnackBarMessage.showSuccessMessage(messageRes);
+    }
+
+    protected void showBottomErrorMessage(String messageRes) {
+        bottomSnackBarMessage.showErrorMessage(messageRes);
+    }
+
+    protected void showBottomWarningMessage(String messageRes) {
+        bottomSnackBarMessage.showWarningMessage(messageRes);
+    }
+
+    protected void showBottomSuccessMessage(String messageRes) {
+        bottomSnackBarMessage.showSuccessMessage(messageRes);
     }
 
 }

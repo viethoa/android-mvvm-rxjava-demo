@@ -9,6 +9,8 @@ import com.viethoa.mvvm.BaseApplications.views.BaseFragment;
 import com.viethoa.mvvm.Components.modules.AppComponent;
 import com.viethoa.mvvm.R;
 
+import java.util.Random;
+
 import butterknife.OnClick;
 
 /**
@@ -39,5 +41,15 @@ public class DetailFragment extends BaseFragment {
         showLoadingDialog();
         // auto dismiss after 5s.
         new Handler().postDelayed(this::dismissLoadingDialog, 5000);
+    }
+
+    @OnClick(R.id.btn_show_top_message)
+    protected void BtnShowTopNotificationClicked() {
+        showTopSuccessMessage("message " + new Random().nextInt());
+    }
+
+    @OnClick(R.id.btn_show_bottom_message)
+    protected void BtnShowBottomNotificationClicked() {
+        showBottomSuccessMessage("message " + new Random().nextInt());
     }
 }

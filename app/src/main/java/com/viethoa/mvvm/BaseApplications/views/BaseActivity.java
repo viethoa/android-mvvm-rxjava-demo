@@ -55,11 +55,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         setSupportActionBar(toolBar);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
     //----------------------------------------------------------------------------------------------
     // Setup dagger
     //----------------------------------------------------------------------------------------------

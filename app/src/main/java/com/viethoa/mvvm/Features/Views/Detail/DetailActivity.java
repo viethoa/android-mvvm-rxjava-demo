@@ -166,6 +166,6 @@ public class DetailActivity extends RxBaseActivity {
 
     @OnClick(R.id.btn_show_bottom_message)
     protected void BtnShowBottomNotificationClicked() {
-        showBottomSuccessMessage(R.string.test_success_message);
+        showBottomSuccessMessage("message " + new Random().nextInt());
     }
 }
