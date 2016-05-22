@@ -37,5 +37,4 @@ public class BaseApplication extends Application {
     public AppComponent getComponent() {
         return appComponent;
     }
-
 }

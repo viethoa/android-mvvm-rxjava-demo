@@ -1,4 +1,4 @@
-package com.viethoa.mvvm.BaseApplications.utils;
+package com.viethoa.mvvm.BaseApplications.utilities;
 
 import android.app.Activity;
 import android.content.Context;

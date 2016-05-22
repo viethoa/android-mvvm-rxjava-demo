@@ -1,4 +1,4 @@
-package com.viethoa.mvvm.BaseApplications.utils;
+package com.viethoa.mvvm.BaseApplications.utilities;
 
 import android.content.Intent;
 import android.net.Uri;

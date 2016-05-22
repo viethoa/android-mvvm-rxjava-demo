@@ -1,61 +1,61 @@
 package com.viethoa.mvvm.BaseApplications.loggers;
 
-import android.os.Environment;
-
-import com.viethoa.mvvm.BaseApplications.utils.DeviceUtils;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import android.support.design.BuildConfig;
+import android.util.Log;
 
 /**
- * Created by VietHoa on 21/05/16.
+ * Created by VietHoa on 22/05/16.
  */
 public class Logger {
-    private static SimpleDateFormat formatter;
-    {
-        formatter = new SimpleDateFormat("E MMM d yyyy hh:mm a", java.util.Locale.getDefault());
+    private static void sendLog(String tag, String message) {
+        //Crashlytics.log(String.format("%s : %s", tag, message));
     }
 
-    public static void writeToLogFile(String tag, String text) {
-        if (text == null || text.isEmpty())
-            return;
+    private static void sendException(Exception ex) {
+        //Crashlytics.logException(ex);
+    }
 
-        boolean canWrite = DeviceUtils.canWriteExternalStorage();
-        if (!canWrite)
-            return;
+    private static void sendException(String message) {
+        //Crashlytics.logException(new Throwable(message));
+    }
 
-        String storagePath = Environment.getExternalStorageDirectory().toString();
-        File logFile = new File(storagePath, "/application_logs.txt");
-
-        if (!logFile.exists()) {
-            try {
-                logFile.createNewFile();
-            } catch (IOException e) {
-                logFile = null;
-                e.printStackTrace();
-            }
+    public static void i(String tag, String message) {
+        if (BuildConfig.DEBUG)
+            Log.i(tag, message);
+        else {
+            sendLog(tag, message);
         }
-        if (logFile == null)    //Fail to create log file.
-            return;
+    }
 
-        try {
-            //User BufferedWriter for good performance, 'true' to set append to file flag
-            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
+    public static void e(String tag, Exception ex) {
+        if (BuildConfig.DEBUG)
+            Log.e(tag, ex.getMessage());
+        else {
+            sendException(ex);
+        }
+    }
 
-            buf.append(formatter.format(new Date()));
-            if (tag != null && !tag.isEmpty())
-                buf.append(tag).append(": ");
-            if (!text.isEmpty())
-                buf.append(text);
+    public static void e(String tag, String message) {
+        if (BuildConfig.DEBUG)
+            Log.e(tag, message + " |error|");
+        else {
+            sendException(message);
+        }
+    }
 
-            buf.newLine();
-            buf.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static void d(String tag, String message) {
+        if (BuildConfig.DEBUG)
+            Log.d(tag, message);
+        else {
+            sendLog(tag, message);
+        }
+    }
+
+    public static void v(String tag, String message) {
+        if (BuildConfig.DEBUG)
+            Log.v(tag, message);
+        else {
+            sendLog(tag, message);
         }
     }
 }

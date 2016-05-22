@@ -1,4 +1,4 @@
-package com.viethoa.mvvm.BaseApplications.utils;
+package com.viethoa.mvvm.BaseApplications.utilities;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
