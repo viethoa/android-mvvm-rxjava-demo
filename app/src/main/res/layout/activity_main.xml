@@ -17,16 +17,12 @@
         android:paddingStart="@dimen/medium_space"
         android:paddingTop="@dimen/small_space"
         app:contentInsetEnd="0dp"
-        app:contentInsetStart="0dp"
-        app:popupTheme="@style/ToolbarPopup"
-        app:theme="@style/ToolbarStyle"
-        app:titleTextAppearance="@style/Toolbar.TitleText">
+        app:contentInsetStart="0dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorBright"
-            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
@@ -35,6 +31,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:scaleType="centerInside"
                 android:src="@mipmap/ic_delete" />
 
@@ -44,6 +41,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:indeterminateDrawable="@drawable/circle_progress_light"
                 android:padding="@dimen/small_space"
                 android:visibility="gone" />
@@ -52,6 +50,7 @@
                 android:id="@+id/et_search"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/btn_clear_search"
                 android:layout_toStartOf="@id/btn_clear_search"
                 android:background="@color/colorBright"
@@ -61,6 +60,8 @@
                 android:lines="1"
                 android:maxLines="1"
                 android:paddingEnd="@dimen/medium_space"
+                android:paddingLeft="@dimen/medium_space"
+                android:paddingRight="@dimen/medium_space"
                 android:paddingStart="@dimen/medium_space"
                 android:textColor="@color/colorDark" />
         </RelativeLayout>

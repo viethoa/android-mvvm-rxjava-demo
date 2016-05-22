@@ -5,8 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.viethoa.mvvm.BaseApplications.views.BaseFragment;
-import com.viethoa.mvvm.Components.modules.AppComponent;
+import com.viethoa.mvvm.BaseApplications.modules.AppComponent;
+import com.viethoa.mvvm.BaseApplications.views.RxBaseFragment;
 import com.viethoa.mvvm.R;
 
 import java.util.Random;
@@ -16,7 +16,7 @@ import butterknife.OnClick;
 /**
  * Created by VietHoa on 20/05/16.
  */
-public class DetailFragment extends BaseFragment {
+public class DetailFragment extends RxBaseFragment {
 
     public static DetailFragment newInstance() {
         return new DetailFragment();

@@ -6,7 +6,6 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -86,24 +85,24 @@ public class SnackBarMessage {
         if (timeInterval != null && !timeInterval.isUnsubscribed())
             return;
 
-        Log.d(TAG, "run interval");
+        //Log.d(TAG, "run interval");
         timeInterval = Observable.interval(100, TimeUnit.MILLISECONDS, Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::performShowNotification);
     }
 
     private void performShowNotification(long tick) {
-        Log.d(TAG, "tick: " + tick);
+        //Log.d(TAG, "tick: " + tick);
         if (tick % (SnackBarConfig.TIME_INTERVAL / 100) != 0) {
             return;
         }
         if (snackBarMessages == null || snackBarMessages.size() <= 0) {
-            Log.d(TAG, "stop interval");
+            //Log.d(TAG, "stop interval");
             stopNotificationInterval();
             return;
         }
 
-        Log.d(TAG, "show snack bar");
+        //Log.d(TAG, "show snack bar");
         SnackBarItem snackBar = snackBarMessages.poll();
         snackBarMessage.showSnackBarMessage(snackBar.getView(), snackBar.getMessage(), snackBarTextViewRes, snackBar.getColor());
     }

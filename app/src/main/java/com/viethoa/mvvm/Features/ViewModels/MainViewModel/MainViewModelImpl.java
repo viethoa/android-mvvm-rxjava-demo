@@ -1,6 +1,9 @@
 package com.viethoa.mvvm.Features.ViewModels.MainViewModel;
 
 import com.jakewharton.rxrelay.PublishRelay;
+import com.viethoa.mvvm.BaseApplications.cachings.CacheManager.CacheManager;
+import com.viethoa.mvvm.BaseApplications.cachings.UserSessionManager.UserSessionManager;
+import com.viethoa.mvvm.Components.networks.MVVMApiService;
 import com.viethoa.mvvm.Features.Interactor.VocabularyInteractor;
 import com.viethoa.mvvm.Features.Models.Vocabulary;
 
@@ -50,6 +53,12 @@ public class MainViewModelImpl implements MainViewModel {
     // Constructor
     //----------------------------------------------------------------------------------------------
 
+    @Inject
+    MVVMApiService apiService;
+    @Inject
+    CacheManager cacheManager;
+    @Inject
+    UserSessionManager userSessionManager;
     @Inject
     VocabularyInteractor vocabularyInteractor;
 

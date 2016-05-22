@@ -21,10 +21,14 @@
 
         <!-- Control style -->
         <item name="android:textViewStyle">@style/Control.TextView</item>
+        <item name="android:editTextStyle">@style/Control.EditText</item>
+        <item name="android:buttonStyle">@style/Control.Button</item>
         <item name="editTextStyle">@style/Control.EditText</item>
         <item name="buttonStyle">@style/Control.Button</item>
 
         <!-- Popup size style -->
+        <item name="android:dialogTheme">@style/Window.DialogStyle</item>
+        <item name="dialogTheme">@style/Window.DialogStyle</item>
         <item name="android:windowMinWidthMinor">80%</item>
         <item name="android:windowMinWidthMajor">80%</item>
     </style>
@@ -83,8 +87,8 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowMinWidthMinor">80%</item>
+        <item name="android:windowMinWidthMajor">80%</item>
     </style>
 
     <style name="FullScreen.DialogStyle" parent="@android:style/Theme.Dialog">

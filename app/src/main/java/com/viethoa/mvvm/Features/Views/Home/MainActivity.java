@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 import com.viethoa.mvvm.BaseApplications.animations.AnimationUtils;
 import com.viethoa.mvvm.BaseApplications.animations.Shake;
+import com.viethoa.mvvm.BaseApplications.modules.AppComponent;
 import com.viethoa.mvvm.BaseApplications.views.RxBaseActivity;
-import com.viethoa.mvvm.Components.modules.AppComponent;
 import com.viethoa.mvvm.Components.modules.HomeModule.DaggerHomeComponent;
 import com.viethoa.mvvm.Components.modules.HomeModule.HomeComponent;
 import com.viethoa.mvvm.Components.modules.HomeModule.HomeModule;
@@ -29,7 +29,6 @@ import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import rx.android.schedulers.AndroidSchedulers;
 
 import static com.jakewharton.rxbinding.widget.RxTextView.textChanges;
 
@@ -82,7 +81,7 @@ public class MainActivity extends RxBaseActivity {
 
         // Load Vocabularies
         mainViewModel.vocabularies()
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(bindToMainThread())
                 .compose(bindToLifecycle())
                 .subscribe(vocabularies -> {
                     showVocabularies(vocabularies);
@@ -115,8 +114,9 @@ public class MainActivity extends RxBaseActivity {
 
         // Bind text input and start search
         textChanges(etSearch)
-                .map(CharSequence::toString)
+                .compose(bindToMainThread())
                 .compose(bindToLifecycle())
+                .map(CharSequence::toString)
                 .subscribe(text -> {
                     searchProgress.setVisibility(View.VISIBLE);
                     mainViewModel.getSearchVocabulariesCommand().call(text);

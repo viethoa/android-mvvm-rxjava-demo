@@ -3,7 +3,7 @@ package com.viethoa.mvvm.Components.modules.ItemMainModule;
 import android.content.Context;
 
 import com.viethoa.mvvm.BaseApplications.annotations.ActivityScope;
-import com.viethoa.mvvm.Components.modules.AppComponent;
+import com.viethoa.mvvm.BaseApplications.modules.AppComponent;
 import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainHolderViewModel.ItemMainViewModel;
 import com.viethoa.mvvm.Features.Views.Home.MainViewHolder;
 

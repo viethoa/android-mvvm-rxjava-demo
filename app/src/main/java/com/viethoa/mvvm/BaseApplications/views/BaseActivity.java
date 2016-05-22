@@ -16,7 +16,7 @@ import android.view.MenuItem;
 import com.viethoa.mvvm.BaseApplications.dialogs.LoadingDialog;
 import com.viethoa.mvvm.BaseApplications.snackbars.BottomSnackBarMessage;
 import com.viethoa.mvvm.BaseApplications.snackbars.TopSnackBarMessage;
-import com.viethoa.mvvm.Components.modules.AppComponent;
+import com.viethoa.mvvm.BaseApplications.modules.AppComponent;
 import com.viethoa.mvvm.Features.MVVMApplication;
 import com.viethoa.mvvm.R;
 
@@ -195,12 +195,29 @@ public abstract class BaseActivity extends AppCompatActivity {
     // Start Activity
     //----------------------------------------------------------------------------------------------
 
-    protected void startNewSingleTaskActivity(Intent intent) {
-        if (intent == null)
-            return;
-
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+    protected void slideOutFromLeft(Intent intent) {
         startActivity(intent);
+        overridePendingTransition(R.anim.acitivity_in_from_left_to_right, R.anim.activity_out_from_right);
+    }
+
+    protected void slideInFromRight(Intent intent) {
+        startActivity(intent);
+        overridePendingTransition(R.anim.acitivity_in_from_right_to_left, R.anim.acitivity_out_from_left);
+    }
+
+    protected void slideOutFromLeftZoom(Intent intent) {
+        startActivity(intent);
+        overridePendingTransition(R.anim.activity_zoom_in, R.anim.activity_out_from_right);
+    }
+
+    protected void slideInFromRightZoom(Intent intent) {
+        startActivity(intent);
+        overridePendingTransition(R.anim.acitivity_in_from_right_to_left, R.anim.activity_zoom_out);
+    }
+
+    protected void slideInFromLeftZoom(Intent intent) {
+        startActivity(intent);
+        overridePendingTransition(R.anim.acitivity_in_from_left_to_right, R.anim.activity_zoom_out);
     }
 
     //----------------------------------------------------------------------------------------------

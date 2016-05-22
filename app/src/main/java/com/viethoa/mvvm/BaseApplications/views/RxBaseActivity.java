@@ -8,6 +8,7 @@ import com.trello.rxlifecycle.ActivityLifecycleProvider;
 import com.trello.rxlifecycle.RxLifecycle;
 
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.subjects.BehaviorSubject;
 
 /**
@@ -16,6 +17,10 @@ import rx.subjects.BehaviorSubject;
 public abstract class RxBaseActivity extends BaseActivity implements ActivityLifecycleProvider {
 
     private final BehaviorSubject<ActivityEvent> lifecycleSubject = BehaviorSubject.create();
+
+    public final <T> Observable.Transformer<T, T> bindToMainThread() {
+        return observable -> observable.observeOn(AndroidSchedulers.mainThread());
+    }
 
     @Override
     public final Observable<ActivityEvent> lifecycle() {

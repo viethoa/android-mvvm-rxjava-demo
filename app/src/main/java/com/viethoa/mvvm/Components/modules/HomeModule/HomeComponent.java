@@ -1,7 +1,7 @@
 package com.viethoa.mvvm.Components.modules.HomeModule;
 
 import com.viethoa.mvvm.BaseApplications.annotations.ActivityScope;
-import com.viethoa.mvvm.Components.modules.AppComponent;
+import com.viethoa.mvvm.BaseApplications.modules.AppComponent;
 import com.viethoa.mvvm.Features.ViewModels.MainViewModel.MainViewModelImpl;
 import com.viethoa.mvvm.Features.Views.Home.MainActivity;
 

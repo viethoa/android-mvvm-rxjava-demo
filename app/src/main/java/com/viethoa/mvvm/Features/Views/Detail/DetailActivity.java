@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 import com.viethoa.mvvm.BaseApplications.dialogs.MessageDialog;
 import com.viethoa.mvvm.BaseApplications.views.RxBaseActivity;
-import com.viethoa.mvvm.Components.modules.AppComponent;
+import com.viethoa.mvvm.BaseApplications.modules.AppComponent;
 import com.viethoa.mvvm.Components.modules.DetailModule.DaggerDetailComponent;
 import com.viethoa.mvvm.Components.modules.DetailModule.DetailComponent;
 import com.viethoa.mvvm.Components.modules.DetailModule.DetailModule;

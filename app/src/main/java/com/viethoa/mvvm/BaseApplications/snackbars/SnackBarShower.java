@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.support.annotation.ColorRes;
 import android.support.annotation.IdRes;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -72,7 +71,7 @@ public class SnackBarShower implements BaseEffects.AnimationListener {
         if (parent == null)
             return;
 
-        Log.d(TAG, "remove snack from window");
+        //Log.d(TAG, "remove snack from window");
         parent.removeView(viewGroup);
     }
 
@@ -83,7 +82,7 @@ public class SnackBarShower implements BaseEffects.AnimationListener {
         int delayTimeInterval = SnackBarConfig.TIME_INTERVAL - SnackBarConfig.ANIMATION - 100;
 
         new Handler().postDelayed(() -> {
-            Log.d(TAG, "dismiss snack bar");
+            //Log.d(TAG, "dismiss snack bar");
             dismissSnackBarMessage(view);
         }, delayTimeInterval);
     }
