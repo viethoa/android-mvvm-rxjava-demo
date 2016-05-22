@@ -23,6 +23,15 @@ android {
         renderscriptSupportModeEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res',
+                    'src/main/base_dialog_layout',
+                    'src/main/base_snackbar_layout'
+            ]
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -33,14 +42,17 @@ android {
         exclude 'LICENSE.txt'
         exclude 'META-INF/services/org.codehaus.groovy.transform.ASTTransformation'
     }
+    /* run with java 8 to using RetroLambda */
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    /* Fix out of memory when this project so big and computer so slow */
     dexOptions {
         incremental true
         javaMaxHeapSize "4g"
     }
+    /* Config unit test */
     testOptions {
         unitTests.returnDefaultValues = true
     }

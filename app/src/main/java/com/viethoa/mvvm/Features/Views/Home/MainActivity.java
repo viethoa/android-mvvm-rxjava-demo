@@ -3,12 +3,11 @@ package com.viethoa.mvvm.Features.Views.Home;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.TextView;
 
+import com.jakewharton.rxbinding.widget.TextViewEditorActionEvent;
 import com.viethoa.mvvm.BaseApplications.animations.AnimationUtils;
 import com.viethoa.mvvm.BaseApplications.animations.Shake;
 import com.viethoa.mvvm.BaseApplications.modules.AppComponent;
@@ -30,6 +29,7 @@ import javax.inject.Inject;
 import butterknife.Bind;
 import butterknife.OnClick;
 
+import static com.jakewharton.rxbinding.widget.RxTextView.editorActionEvents;
 import static com.jakewharton.rxbinding.widget.RxTextView.textChanges;
 
 public class MainActivity extends RxBaseActivity {
@@ -60,26 +60,12 @@ public class MainActivity extends RxBaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        initializeSearchView();
-        initializeRecycleView();
-    }
-
-    //----------------------------------------------------------------------------------------------
-    // RecycleView
-    //----------------------------------------------------------------------------------------------
-
-    private void initializeRecycleView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setEmptyView(emptyView);
 
-        // Load Vocabularies
+        // RecycleView
         mainViewModel.vocabularies()
                 .compose(bindToMainThread())
                 .compose(bindToLifecycle())
@@ -89,60 +75,51 @@ public class MainActivity extends RxBaseActivity {
                     showVocabularies(new ArrayList<>());
                 });
 
-        mainViewModel.getGetVocabulariesCommand().call(null);
-    }
-
-    private void showVocabularies(List<Vocabulary> vocabularies) {
-        searchProgress.setVisibility(View.GONE);
-        if (mainAdapter == null) {
-            MainAdapter mainAdapter = new MainAdapter(this, vocabularies);
-            recyclerView.setAdapter(mainAdapter);
-        } else {
-            mainAdapter.refreshData(vocabularies);
-        }
-    }
-
-    //----------------------------------------------------------------------------------------------
-    // SearchView
-    //----------------------------------------------------------------------------------------------
-
-    private void initializeSearchView() {
+        // Search UI animation effect.
         etSearch.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        editorActionEvents(etSearch)
+                .compose(bindToMainThread())
+                .compose(bindToLifecycle())
+                .subscribe(this::shakeEditTextViewWhenEmpty);
 
-        //editorActionEvents(etSearch)
-        etSearch.setOnEditorActionListener(new SearchEditorListener());
-
-        // Bind text input and start search
+        // Get vocabularies in first-time and take search when text change.
         textChanges(etSearch)
                 .compose(bindToMainThread())
                 .compose(bindToLifecycle())
                 .map(CharSequence::toString)
                 .subscribe(text -> {
                     searchProgress.setVisibility(View.VISIBLE);
-                    mainViewModel.getSearchVocabulariesCommand().call(text);
+                    mainViewModel.getGetVocabulariesCommand().call(text);
                 });
     }
 
-    private class SearchEditorListener implements TextView.OnEditorActionListener {
-        @Override
-        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-            if (actionId != EditorInfo.IME_ACTION_SEARCH)
-                return false;
+    //----------------------------------------------------------------------------------------------
+    // Events
+    //----------------------------------------------------------------------------------------------
 
-            String query = etSearch.getText().toString();
-            if (TextUtils.isEmpty(query)) {
-                AnimationUtils.shakeAnimationEditText(etSearch);
-                new Shake().start(etSearch);
-                return true;
-            }
-
-            // Todo search here
-            return false;
+    private void showVocabularies(List<Vocabulary> vocabularies) {
+        searchProgress.setVisibility(View.GONE);
+        if (mainAdapter == null) {
+            mainAdapter = new MainAdapter(this, vocabularies);
+            recyclerView.setAdapter(mainAdapter);
+        } else {
+            mainAdapter.refreshData(vocabularies);
         }
     }
 
+    private void shakeEditTextViewWhenEmpty(TextViewEditorActionEvent editorActionEvent) {
+        if (editorActionEvent.actionId() != EditorInfo.IME_ACTION_SEARCH)
+            return;
+        String query = etSearch.getText().toString();
+        if (!TextUtils.isEmpty(query))
+            return;
+
+        AnimationUtils.shakeAnimationEditText(etSearch);
+        new Shake().start(etSearch);
+    }
+
     //----------------------------------------------------------------------------------------------
-    // Event
+    // User Actions Event
     //----------------------------------------------------------------------------------------------
 
     @OnClick(R.id.btn_clear_search)
