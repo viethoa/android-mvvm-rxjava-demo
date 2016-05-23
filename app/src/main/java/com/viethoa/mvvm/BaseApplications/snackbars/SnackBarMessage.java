@@ -1,15 +1,13 @@
 package com.viethoa.mvvm.BaseApplications.snackbars;
 
 import android.app.Activity;
-import android.content.Context;
-import android.support.annotation.ColorRes;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.StringRes;
-import android.view.LayoutInflater;
+import android.os.Handler;
 import android.view.View;
+import android.view.ViewGroup;
 
-import com.viethoa.mvvm.R;
+import com.viethoa.mvvm.BaseApplications.animations.BaseEffects;
+import com.viethoa.mvvm.BaseApplications.animations.SlideBottom;
+import com.viethoa.mvvm.BaseApplications.animations.SlideTop;
 
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
@@ -22,65 +20,33 @@ import rx.schedulers.Schedulers;
 /**
  * Created by VietHoa on 21/05/16.
  */
-public class SnackBarMessage {
+public class SnackBarMessage<T extends SnackBar> implements BaseEffects.AnimationListener, SnackBar.SnackBarListener {
     private final String TAG = SnackBarMessage.class.getSimpleName();
 
     private Activity context;
-    private int snackBarLayoutRes;
-    private int snackBarTextViewRes;
-    private LayoutInflater layoutInflater;
-    private LinkedList<SnackBarItem> snackBarMessages;
-    private SnackBarShower snackBarMessage;
     private Subscription timeInterval;
+    private LinkedList<T> snackBarMessages;
+    private ViewGroup.LayoutParams snackBarParams;
+    private SnackBar snackBarShowing;
 
-    public SnackBarMessage(Activity activity, @LayoutRes int layoutRes, @IdRes int textViewMessageRes, boolean isTopMessage) {
+    public SnackBarMessage(Activity activity) {
         context = activity;
-        snackBarLayoutRes = layoutRes;
-        snackBarTextViewRes = textViewMessageRes;
-
         snackBarMessages = new LinkedList<>();
-        snackBarMessage = new SnackBarShower(context, isTopMessage);
-        layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        snackBarParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT);
+    }
+
+    protected void showNotification(T snackBar) {
+        snackBar.setListener(this);
+        snackBarMessages.add(snackBar);
+        startTimeInterval();
     }
 
     //----------------------------------------------------------------------------------------------
-    // Options
+    // Time interval
     //----------------------------------------------------------------------------------------------
 
-    public void showErrorMessage(@StringRes int message) {
-        showNotification(context.getString(message), R.color.colorNotificationError);
-    }
-
-    public void showWarningMessage(@StringRes int message) {
-        showNotification(context.getString(message), R.color.colorNotificationWaring);
-    }
-
-    public void showSuccessMessage(@StringRes int message) {
-        showNotification(context.getString(message), R.color.colorNotificationSuccess);
-    }
-
-    public void showErrorMessage(String message) {
-        showNotification(message, R.color.colorNotificationError);
-    }
-
-    public void showWarningMessage(String message) {
-        showNotification(message, R.color.colorNotificationWaring);
-    }
-
-    public void showSuccessMessage(String message) {
-        showNotification(message, R.color.colorNotificationSuccess);
-    }
-
-    //----------------------------------------------------------------------------------------------
-    // Logistically
-    //----------------------------------------------------------------------------------------------
-
-    private void showNotification(String message, @ColorRes int color) {
-        // Add new message to stack.
-        View topSnackBarMessage = layoutInflater.inflate(snackBarLayoutRes, null);
-        SnackBarItem topSnackBar = new SnackBarItem(color, topSnackBarMessage, message);
-        snackBarMessages.add(topSnackBar);
-
+    private void startTimeInterval() {
         // Should run interval stage.
         if (timeInterval != null && !timeInterval.isUnsubscribed())
             return;
@@ -97,21 +63,95 @@ public class SnackBarMessage {
             return;
         }
         if (snackBarMessages == null || snackBarMessages.size() <= 0) {
-            //Log.d(TAG, "stop interval");
             stopNotificationInterval();
             return;
         }
 
+        snackBarShowing = snackBarMessages.poll();
+        if (snackBarShowing.isCloseable()) {
+            stopNotificationInterval();
+        }
+
         //Log.d(TAG, "show snack bar");
-        SnackBarItem snackBar = snackBarMessages.poll();
-        snackBarMessage.showSnackBarMessage(snackBar.getView(), snackBar.getMessage(), snackBarTextViewRes, snackBar.getColor());
+        showSnackBarMessage(snackBarShowing);
     }
 
     private void stopNotificationInterval() {
         if (timeInterval == null || timeInterval.isUnsubscribed())
             return;
 
+        //Log.d(TAG, "stop interval");
         timeInterval.unsubscribe();
         timeInterval = null;
+    }
+
+    //----------------------------------------------------------------------------------------------
+    // Shower
+    //----------------------------------------------------------------------------------------------
+
+    public void showSnackBarMessage(SnackBar snackBar) {
+        if (snackBar == null || context == null || context.isFinishing())
+            return;
+
+        // This Message is showing, should remove first.
+        if (snackBar.getParent() != null)
+            return;
+
+        // Append snack bar view to window.
+        context.addContentView(snackBar.getView(), snackBarParams);
+
+        if (snackBar.isAnimationFromTop()) {        // Top snack bar animation
+            SlideTop slideTop = new SlideTop();
+            slideTop.setDuration(SnackBarConfig.ANIMATION);
+            slideTop.setListener(this);
+            slideTop.start(snackBar.getView());
+        } else {                                    // Bottom snack bar animation
+            SlideBottom slideBottom = new SlideBottom();
+            slideBottom.setDuration(SnackBarConfig.ANIMATION);
+            slideBottom.setListener(this);
+            slideBottom.start(snackBar.getView());
+        }
+    }
+
+    private void dismissSnackBarMessage(View viewGroup) {
+        if (viewGroup == null)
+            return;
+
+        ViewGroup parent = (ViewGroup) viewGroup.getParent();
+        if (parent == null)
+            return;
+
+        //Log.d(TAG, "remove snack from window");
+        parent.removeView(viewGroup);
+    }
+
+    @Override
+    public void onAnimationEnd(View view) {
+        if (view == null)
+            return;
+        if (snackBarShowing != null && snackBarShowing.isCloseable())
+            return;
+
+        // The delay time give user read notification message.
+        // Subtract 100ms: for multiple messages => should close first before show new one.
+        int delayTimeInterval = SnackBarConfig.TIME_INTERVAL - SnackBarConfig.ANIMATION - 100;
+        new Handler().postDelayed(() -> {
+            dismissSnackBarMessage(view);
+        }, delayTimeInterval);
+    }
+
+    @Override
+    public void OnBtnCloseClicked(View snackBar) {
+        dismissSnackBarMessage(snackBar);
+
+        // should show next?
+        if (snackBarMessages == null || snackBarMessages.size() <= 0)
+            return;
+
+        // This SnackBar have Closeable button, should show next item when closed.
+        T nextSnackBar = snackBarMessages.peek();
+        if (nextSnackBar.isCloseable()) {
+            startTimeInterval();
+        }
     }
 }

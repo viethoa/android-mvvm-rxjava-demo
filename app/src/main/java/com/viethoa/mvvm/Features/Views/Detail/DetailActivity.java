@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 import com.viethoa.mvvm.BaseApplications.dialogs.MessageDialog;
-import com.viethoa.mvvm.BaseApplications.views.RxBaseActivity;
 import com.viethoa.mvvm.BaseApplications.modules.AppComponent;
+import com.viethoa.mvvm.BaseApplications.views.RxBaseActivity;
 import com.viethoa.mvvm.Components.modules.DetailModule.DaggerDetailComponent;
 import com.viethoa.mvvm.Components.modules.DetailModule.DetailComponent;
 import com.viethoa.mvvm.Components.modules.DetailModule.DetailModule;
@@ -161,11 +161,49 @@ public class DetailActivity extends RxBaseActivity {
 
     @OnClick(R.id.btn_show_top_message)
     protected void BtnShowTopNotificationClicked() {
-        showTopSuccessMessage("message " + new Random().nextInt());
+        int number = new Random().nextInt();
+        if (number % 5 == 0) {
+            showTopErrorMessage("message " + number);
+        } else if (number % 3 == 0) {
+            showTopWarningMessage("message " + number);
+        } else {
+            showTopSuccessMessage("message " + number);
+        }
     }
 
     @OnClick(R.id.btn_show_bottom_message)
     protected void BtnShowBottomNotificationClicked() {
-        showBottomSuccessMessage("message " + new Random().nextInt());
+        int number = new Random().nextInt();
+        if (number % 5 == 0) {
+            showBottomErrorMessage("message " + number);
+        } else if (number % 3 == 0) {
+            showBottomWarningMessage("message " + number);
+        } else {
+            showBottomSuccessMessage("message " + number);
+        }
+    }
+
+    @OnClick(R.id.btn_show_top_message_close_able)
+    protected void BtnShowTopNotificationCloseableClicked() {
+        int number = new Random().nextInt();
+        if (number % 5 == 0) {
+            showTopErrorMessageCloseable("message " + number);
+        } else if (number % 3 == 0) {
+            showTopWarningMessageCloseable("message " + number);
+        } else {
+            showTopSuccessMessageCloseable("message " + number);
+        }
+    }
+
+    @OnClick(R.id.btn_show_bottom_message_close_able)
+    protected void BtnShowBottomNotificationCloseableClicked() {
+        int number = new Random().nextInt();
+        if (number % 5 == 0) {
+            showBottomErrorMessageCloseable("message " + number);
+        } else if (number % 3 == 0) {
+            showBottomWarningMessageCloseable("message " + number);
+        } else {
+            showBottomSuccessMessageCloseable("message " + number);
+        }
     }
 }

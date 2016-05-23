@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.viethoa.mvvm.BaseApplications.dialogs.LoadingDialog;
+import com.viethoa.mvvm.BaseApplications.modules.AppComponent;
 import com.viethoa.mvvm.BaseApplications.snackbars.BottomSnackBarMessage;
 import com.viethoa.mvvm.BaseApplications.snackbars.TopSnackBarMessage;
-import com.viethoa.mvvm.BaseApplications.modules.AppComponent;
 import com.viethoa.mvvm.Features.MVVMApplication;
 
 import butterknife.ButterKnife;

@@ -14,9 +14,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.viethoa.mvvm.BaseApplications.dialogs.LoadingDialog;
+import com.viethoa.mvvm.BaseApplications.modules.AppComponent;
 import com.viethoa.mvvm.BaseApplications.snackbars.BottomSnackBarMessage;
 import com.viethoa.mvvm.BaseApplications.snackbars.TopSnackBarMessage;
-import com.viethoa.mvvm.BaseApplications.modules.AppComponent;
 import com.viethoa.mvvm.Features.MVVMApplication;
 import com.viethoa.mvvm.R;
 
@@ -189,6 +189,58 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void showBottomSuccessMessage(String messageRes) {
         bottomSnackBarMessage.showSuccessMessage(messageRes);
+    }
+
+
+
+
+
+    protected void showTopErrorMessageCloseable(int messageRes) {
+        topSnackBarMessage.showErrorMessageCloseable(messageRes);
+    }
+
+    protected void showTopWarningMessageCloseable(int messageRes) {
+        topSnackBarMessage.showWarningMessageCloseable(messageRes);
+    }
+
+    protected void showTopSuccessMessageCloseable(int messageRes) {
+        topSnackBarMessage.showSuccessMessageCloseable(messageRes);
+    }
+
+    protected void showTopErrorMessageCloseable(String messageRes) {
+        topSnackBarMessage.showErrorMessageCloseable(messageRes);
+    }
+
+    protected void showTopWarningMessageCloseable(String messageRes) {
+        topSnackBarMessage.showWarningMessageCloseable(messageRes);
+    }
+
+    protected void showTopSuccessMessageCloseable(String messageRes) {
+        topSnackBarMessage.showSuccessMessageCloseable(messageRes);
+    }
+
+    protected void showBottomErrorMessageCloseable(int messageRes) {
+        bottomSnackBarMessage.showErrorMessage(messageRes);
+    }
+
+    protected void showBottomWarningMessageCloseable(int messageRes) {
+        bottomSnackBarMessage.showWarningMessage(messageRes);
+    }
+
+    protected void showBottomSuccessMessageCloseable(int messageRes) {
+        bottomSnackBarMessage.showSuccessMessageCloseable(messageRes);
+    }
+
+    protected void showBottomErrorMessageCloseable(String messageRes) {
+        bottomSnackBarMessage.showErrorMessageCloseable(messageRes);
+    }
+
+    protected void showBottomWarningMessageCloseable(String messageRes) {
+        bottomSnackBarMessage.showWarningMessageCloseable(messageRes);
+    }
+
+    protected void showBottomSuccessMessageCloseable(String messageRes) {
+        bottomSnackBarMessage.showSuccessMessageCloseable(messageRes);
     }
 
     //----------------------------------------------------------------------------------------------

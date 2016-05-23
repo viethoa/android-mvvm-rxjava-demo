@@ -22,9 +22,7 @@
             android:textColor="@color/colorBright" />
 
         <View
-            android:id="@+id/snack_bar_divider"
             android:layout_width="@dimen/line_px"
-            android:visibility="gone"
             android:layout_height="match_parent"
             android:background="@color/colorBright" />
 
@@ -33,7 +31,6 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:padding="@dimen/large_space"
-            android:visibility="gone"
             android:scaleType="centerInside"
             android:src="@mipmap/ic_delete_bright" />
     </LinearLayout>
