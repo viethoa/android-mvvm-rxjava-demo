@@ -27,7 +27,7 @@ public class SnackBarMessage<T extends SnackBar> implements BaseEffects.Animatio
     private Subscription timeInterval;
     private LinkedList<T> snackBarMessages;
     private ViewGroup.LayoutParams snackBarParams;
-    private SnackBar snackBarShowing;
+    private SnackBar currentShowingSnackBar;
 
     public SnackBarMessage(Activity activity) {
         context = activity;
@@ -36,9 +36,12 @@ public class SnackBarMessage<T extends SnackBar> implements BaseEffects.Animatio
                 ViewGroup.LayoutParams.MATCH_PARENT);
     }
 
-    protected void showNotification(T snackBar) {
+    protected synchronized void showNotification(T snackBar) {
         snackBar.setListener(this);
         snackBarMessages.add(snackBar);
+        if (currentShowingSnackBar != null && currentShowingSnackBar.isCloseable())
+            return;
+
         startTimeInterval();
     }
 
@@ -67,13 +70,13 @@ public class SnackBarMessage<T extends SnackBar> implements BaseEffects.Animatio
             return;
         }
 
-        snackBarShowing = snackBarMessages.poll();
-        if (snackBarShowing.isCloseable()) {
+        currentShowingSnackBar = snackBarMessages.poll();
+        if (currentShowingSnackBar.isCloseable()) {
             stopNotificationInterval();
         }
 
         //Log.d(TAG, "show snack bar");
-        showSnackBarMessage(snackBarShowing);
+        showSnackBarMessage(currentShowingSnackBar);
     }
 
     private void stopNotificationInterval() {
@@ -129,7 +132,7 @@ public class SnackBarMessage<T extends SnackBar> implements BaseEffects.Animatio
     public void onAnimationEnd(View view) {
         if (view == null)
             return;
-        if (snackBarShowing != null && snackBarShowing.isCloseable())
+        if (currentShowingSnackBar != null && currentShowingSnackBar.isCloseable())
             return;
 
         // The delay time give user read notification message.
@@ -143,6 +146,7 @@ public class SnackBarMessage<T extends SnackBar> implements BaseEffects.Animatio
     @Override
     public void OnBtnCloseClicked(View snackBar) {
         dismissSnackBarMessage(snackBar);
+        currentShowingSnackBar = null;
 
         // should show next?
         if (snackBarMessages == null || snackBarMessages.size() <= 0)

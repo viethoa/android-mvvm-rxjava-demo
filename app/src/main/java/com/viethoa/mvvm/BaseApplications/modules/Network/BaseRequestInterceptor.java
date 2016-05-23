@@ -29,7 +29,7 @@ public class BaseRequestInterceptor implements RequestInterceptor {
         String accessToken = mUserSessionManager.getCurrentAccessToken();
         if (!TextUtils.isEmpty(accessToken)) {
             request.addHeader(MVVMConfig.AUTHORIZATION_KEY, accessToken);
-            request.addQueryParam(MVVMConfig.AUTHORIZATION_KEY, accessToken);
+            //request.addQueryParam(MVVMConfig.AUTHORIZATION_KEY, accessToken); //todo can nhac su dung ^^!
         }
     }
 }

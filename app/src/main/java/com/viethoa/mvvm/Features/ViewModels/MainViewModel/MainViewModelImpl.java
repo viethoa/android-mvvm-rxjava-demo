@@ -8,6 +8,7 @@ import com.viethoa.mvvm.Features.Interactor.VocabularyInteractor;
 import com.viethoa.mvvm.Features.Models.Vocabulary;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -60,6 +61,7 @@ public class MainViewModelImpl implements MainViewModel {
 
         // Get Vocabularies
         getVocabulariesCommand
+                .debounce(500, TimeUnit.MILLISECONDS)
                 .subscribeOn(Schedulers.io())
                 .concatMap(searchText -> vocabularyInteractor.searchVocabularies(searchText))
                 .subscribe( vocabularies -> {

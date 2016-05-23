@@ -1,9 +1,12 @@
 package com.viethoa.mvvm.Features.Models;
 
+import java.io.Serializable;
+
 /**
  * Created by VietHoa on 21/05/16.
  */
-public class User {
+public class User implements Serializable {
+
     private int id;
     private String token;
 
